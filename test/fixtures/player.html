@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Fake player</title>
+<style>
+  body{margin:0;background:#000}
+  .wrap{position:relative;width:100vw;height:100vh}
+  video{width:100%;height:100%}
+  .jw-captions{position:absolute;bottom:40px;width:100%;text-align:center;color:#0f0;font:20px sans-serif}
+  button{position:absolute;top:8px;right:8px}
+</style>
+</head>
+<body>
+  <!-- Mimics JW Player: subtitles fetched by script, drawn into .jw-captions, wrapper goes fullscreen. -->
+  <div class="wrap" id="wrap">
+    <video id="v" src="clip.mp4" muted autoplay loop></video>
+    <div class="jw-captions" id="cap"></div>
+    <button id="fs">fullscreen</button>
+  </div>
+  <script>
+    const v = document.getElementById('v');
+    fetch('subs/movie.English.srt').then(r => r.text()).then(t => {
+      const cues = t.trim().split(/\n\n/).map(b => {
+        const [, time, ...text] = b.split('\n');
+        const [a, z] = time.split(' --> ').map(s => { const [h, m, x] = s.replace(',', '.').split(':'); return +h * 3600 + +m * 60 + +x; });
+        return { a, z, text: text.join('\n') };
+      });
+      v.addEventListener('timeupdate', () => {
+        document.getElementById('cap').textContent = cues.find(c => c.a <= v.currentTime && c.z > v.currentTime)?.text || '';
+      });
+    });
+    fetch('subs/movie_tr.srt'); // second language loaded but unused by this player
+    document.getElementById('fs').onclick = () => document.getElementById('wrap').requestFullscreen();
+  </script>
+</body>
+</html>

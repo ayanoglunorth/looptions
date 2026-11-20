@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Looptions fixture</title>
+<style>body{font:14px system-ui;margin:24px;background:#eee}video,iframe{display:block;width:640px;height:360px;border:0;background:#000}</style>
+</head>
+<body>
+  <h2>1. HTML5 &lt;track&gt; (same origin)</h2>
+  <video id="native" src="clip.mp4" controls muted autoplay loop>
+    <track kind="subtitles" src="subs/en.vtt" srclang="en" label="English">
+    <track kind="subtitles" src="subs/tr.vtt" srclang="tr" label="Türkçe" default>
+  </video>
+
+  <h2>2. Custom player in a cross-origin iframe (fetches .srt, draws its own captions)</h2>
+  <iframe id="frame" allowfullscreen></iframe>
+  <script>
+    // Same folder served on a second port gives a different origin.
+    document.getElementById('frame').src = `http://127.0.0.1:${+location.port + 1}/player.html`;
+  </script>
+</body>
+</html>

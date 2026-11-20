@@ -1,0 +1,313 @@
+/* Outfit (SIL OFL 1.1), bundled so the popup never calls out to a font CDN. */
+@font-face {
+  font-family: "Outfit"; font-weight: 100 900; font-display: swap;
+  src: url("fonts/outfit-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Outfit"; font-weight: 100 900; font-display: swap;
+  src: url("fonts/outfit-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --paper: #fcf9fb;
+  --card: #ffffff;
+  --ink: #2d2134;          /* aubergine */
+  --muted: #776a82;
+  --line: #ece3ef;
+  --lilac: #a594e3;
+  --lilac-soft: #efe9fb;
+  --peach: #f27a36;
+  --peach-deep: #c4501a;   /* orange that still reads on white at small sizes */
+  --peach-soft: #fde9dc;
+  --shadow: 0 10px 24px -14px rgba(90, 50, 110, .35);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+::selection { background: var(--peach); color: #fff; }
+
+html { background: var(--paper); }
+body {
+  width: 340px; margin: 0;
+  background: var(--paper); color: var(--ink);
+  font: 400 13.5px/1.4 "Outfit", "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button, select, input, output { font: inherit; color: inherit; }
+/* --peach is 2.6:1 on paper; the ring needs 3:1, so it uses --peach-deep (and ink over the peach hero). */
+:focus-visible { outline: 2px solid var(--peach-deep); outline-offset: 2px; }
+.hero :focus-visible { outline-color: var(--ink); }
+
+/* ---- hero: peach/lilac grain field, like the reference's gradient headers ---- */
+.hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding: 14px 16px 16px; border-radius: 0 0 28px 28px;
+  background:
+    radial-gradient(110% 85% at 100% 0%, #f9a26a 0%, rgba(249, 162, 106, 0) 60%),
+    radial-gradient(90% 80% at 0% 100%, #c6b6f2 0%, rgba(198, 182, 242, 0) 65%),
+    linear-gradient(160deg, #f6dccb, #ece2f7);
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--grain); opacity: .32; mix-blend-mode: soft-light; pointer-events: none;
+}
+
+.top { display: flex; align-items: center; gap: 10px; }
+/* The mark is the real logo, same as icons/: a white tile with 25% corners and two subtitle pills sitting low in it. */
+.mark {
+  width: 40px; height: 40px; flex: none; border-radius: 25%; background: #fff;
+  box-shadow: var(--shadow), 0 0 0 1px var(--line);
+}
+.mark svg { display: block; width: 100%; height: 100%; }
+/* Wordmark: "Loop" + "options" read as loop + options; DM Sans two-weight, brand name only. */
+.wordmark { font-family: "Looptions DM Sans", "Outfit", "Segoe UI", system-ui, sans-serif; font-weight: 700; letter-spacing: -.03em; }
+.wordmark span { font-weight: 400; }
+.title { min-width: 0; margin-right: auto; }
+h1 { margin: 0; font-size: 21px; font-weight: 600; letter-spacing: -.015em; line-height: 1.1; }
+.status { margin: 2px 0 0; color: #5d4f68; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.status:empty { display: none; }
+/* Fixed width so "Açık" -> "Kapalı" does not push the notebook button; the longer word grows leftwards into the gap. */
+.power-label { display: flex; justify-content: flex-end; flex: none; width: 31px; white-space: nowrap; font-size: 12.5px; font-weight: 600; color: #5d4f68; }
+
+/* Word cards button: where saved words and advanced settings live. No frame, so it melts into the gradient;
+   the icon is two stacked cards in the logo's colours (lilac behind, orange in front) and the badge carries the saved-word count. */
+.gear {
+  position: relative; width: 50px; height: 50px; margin: -3px 0; flex: none; padding: 0; border: 0; border-radius: 25%; cursor: pointer;
+  display: grid; place-items: center; background: none;
+  transition: transform 160ms var(--ease);
+}
+.gear:hover { transform: translateY(-2px) rotate(-3deg); }
+.gear:active { transform: scale(.92); }
+.gear svg { width: 46px; height: 46px; filter: drop-shadow(0 6px 8px rgba(90, 50, 110, .35)); }
+.gear[data-count]::after {
+  content: attr(data-count); position: absolute; top: 1px; right: 0; min-width: 17px; height: 17px; padding: 0 4px;
+  display: grid; place-items: center; border-radius: 999px; background: var(--peach-deep); color: #fff;
+  font-size: 11px; font-weight: 650; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 1.5px #fff;
+}
+
+/* ---- switch: shared by the master toggle (button) and the align option (checkbox) ---- */
+.switch {
+  appearance: none; position: relative; flex: none; margin: 0; padding: 0; cursor: pointer;
+  width: 46px; height: 26px; border: 0; border-radius: 999px;
+  background: #8f829b; /* 3.4:1 on paper: the off state must read without the thumb */
+  transition: background-color 220ms var(--ease);
+}
+.switch::after {
+  content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; box-shadow: 0 2px 6px rgba(45, 33, 52, .25);
+  transition: transform 260ms var(--ease), width 160ms var(--ease);
+}
+.switch:active::after { width: 24px; }
+.switch[aria-checked="true"], .switch:checked { background: var(--peach-deep); }
+.switch[aria-checked="true"]::after, .switch:checked::after { transform: translateX(20px); }
+.switch[aria-checked="true"]:active::after, .switch:checked:active::after { transform: translateX(16px); }
+/* On the gradient the track needs its own edge: a white ring when on, an ink hairline when off. */
+.hero .switch[aria-checked="true"] { box-shadow: 0 0 0 2px #fff; }
+.hero .switch:not([aria-checked="true"]) { background: rgba(255, 255, 255, .55); box-shadow: inset 0 0 0 1.5px rgba(45, 33, 52, .5); }
+
+/* Caption fonts (SIL OFL 1.1), same files the overlay loads on video pages. */
+@font-face { font-family: "Looptions Inter"; font-weight: 100 900; font-display: swap; src: url("../fonts/inter-latin.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Looptions Inter"; font-weight: 100 900; font-display: swap; src: url("../fonts/inter-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Looptions Atkinson"; font-weight: 100 900; font-display: swap; src: url("../fonts/atkinson-hyperlegible-next-latin.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Looptions Atkinson"; font-weight: 100 900; font-display: swap; src: url("../fonts/atkinson-hyperlegible-next-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Looptions DM Sans"; font-weight: 100 900; font-display: swap; src: url("../fonts/dm-sans-latin.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Looptions DM Sans"; font-weight: 100 900; font-display: swap; src: url("../fonts/dm-sans-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Looptions Nunito Sans"; font-weight: 100 900; font-display: swap; src: url("../fonts/nunito-sans-latin.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Looptions Nunito Sans"; font-weight: 100 900; font-display: swap; src: url("../fonts/nunito-sans-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+
+/* ---- preview: a tilted "video" card, echoing the reference's floating question card ---- */
+.preview { margin: 12px 4px 0; }
+.frame {
+  position: relative; isolation: isolate; overflow: hidden;
+  aspect-ratio: 16 / 6; border-radius: 20px; border: 5px solid var(--card);
+  background:
+    radial-gradient(80% 90% at 85% 10%, #7a5a92 0%, rgba(122, 90, 146, 0) 70%),
+    linear-gradient(150deg, #4a3958, #2c2136);
+  box-shadow: 0 22px 34px -20px rgba(110, 50, 30, .55);
+  transform: rotate(-1.5deg);
+  display: grid; place-items: end center; padding: 0 12px 11px;
+  text-align: center; font-weight: 600; line-height: 1.3;
+  --s: 1;
+}
+.frame::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--grain); opacity: .5; mix-blend-mode: overlay;
+}
+/* Same caption look as the overlay; app.js sets the --custom properties from DS.lookVars. */
+.box {
+  position: relative; display: grid; justify-items: center; gap: var(--gap, .16em);
+  padding: var(--pad, .16em .6em .22em); border-radius: var(--rad, .35em); background: var(--bg, rgba(10, 10, 12, .72));
+  font-family: var(--ff, "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif);
+  font-weight: var(--fw, 600);
+  font-size: calc(14px * var(--s) * var(--scale, 1));
+}
+.box:not(:has(.pv:not(:empty))) { display: none; }
+.pv {
+  color: var(--c1, #fff); transition: opacity 140ms var(--ease);
+  padding: var(--lpad, 0); border-radius: var(--rad, 0); background: var(--lbg, transparent);
+  text-shadow: var(--shadow, none); -webkit-text-stroke: var(--stroke, 0) var(--edge, #000); paint-order: stroke fill;
+}
+.pv:empty { display: none; }
+.pv.secondary { color: var(--c2, #f5d547); font-size: .84em; font-weight: 500; }
+.frame[data-mode="swap"] .pv { font-size: 1em; font-weight: inherit; }
+.frame[data-mode="swap"][data-show="primary"] .secondary,
+.frame[data-mode="swap"][data-show="secondary"] .primary { position: absolute; inset: auto .6em .22em; opacity: 0; }
+
+/* ---- controls ---- */
+main { padding: 2px 16px 16px; transition: opacity 220ms var(--ease), filter 220ms var(--ease); }
+main[inert] { opacity: .45; filter: grayscale(.7); user-select: none; }
+.hero:has(+ main[inert]) .frame { filter: grayscale(.7) brightness(.9); }
+
+.empty { margin: 14px 0 0; padding: 12px 14px; border-radius: 16px; background: var(--lilac-soft); color: #4e4160; }
+
+.group { display: grid; gap: 12px; padding-top: 14px; }
+.group + .group { margin-top: 14px; border-top: 1px solid var(--line); }
+.field { display: grid; gap: 7px; }
+label { font-weight: 600; }
+.hint { color: var(--muted); font-weight: 400; margin-left: 4px; }
+.hint.block { display: block; margin: 1px 0 0; font-size: 12.5px; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+
+/* Dropdown: white pill; Chrome's customizable select styles the open list too, older Chrome keeps a native list. */
+select {
+  appearance: none; width: 100%; height: 40px; padding: 0 34px 0 16px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--card); box-shadow: var(--shadow);
+  font-weight: 500; cursor: pointer; text-overflow: ellipsis;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z' fill='%23776a82'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 13px center; background-size: 14px;
+  transition: border-color 160ms var(--ease);
+}
+select:hover { border-color: #dccfe4; }
+select:disabled { cursor: not-allowed; color: var(--muted); box-shadow: none; background-color: #f7f3f8; }
+
+@supports (appearance: base-select) {
+  select, ::picker(select) { appearance: base-select; }
+  select { display: flex; align-items: center; background-image: none; padding-right: 12px; }
+  select::picker-icon {
+    content: ""; width: 14px; height: 14px; margin-left: auto; flex: none;
+    background: var(--muted);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: rotate 220ms var(--ease);
+  }
+  select:open { border-color: #dccfe4; }
+  select:open::picker-icon { rotate: 180deg; }
+  select > button { all: unset; }
+  ::picker(select) {
+    margin-top: 6px; padding: 6px; border: 1px solid var(--line); border-radius: 20px;
+    background: var(--card); box-shadow: 0 20px 40px -14px rgba(70, 35, 90, .35);
+    max-height: 240px;
+  }
+  option {
+    display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 14px;
+    font-weight: 500; cursor: pointer; transition: background-color 120ms var(--ease);
+  }
+  option:hover, option:focus-visible { background: var(--lilac-soft); outline: none; }
+  option:checked { background: var(--peach-soft); color: var(--peach-deep); font-weight: 600; }
+  option::checkmark { order: 1; margin-left: auto; color: var(--peach); }
+}
+
+/* Timing stepper: two round buttons, lilac and peach, like the reference's card actions. */
+.stepper { display: flex; align-items: center; gap: 2px; }
+.round {
+  width: 32px; height: 32px; padding: 0; border-radius: 50%; cursor: pointer;
+  display: grid; place-items: center;
+  transition: transform 140ms var(--ease), background-color 160ms var(--ease);
+}
+.round.minus { background: var(--lilac-soft); border: 1px solid transparent; color: #5b4a95; }
+.round.plus { background: var(--card); border: 1.5px solid #f6b48d; color: var(--peach-deep); }
+.round.minus:hover { background: #e3daf8; }
+.round.plus:hover { background: var(--peach-soft); }
+.round:active { transform: scale(.9); }
+.round svg { width: 14px; height: 14px; fill: currentColor; }
+.stepper output { min-width: 54px; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Segmented: lilac track, white raised thumb. */
+.segmented {
+  display: grid; grid-template-columns: 1fr 1fr; padding: 4px; gap: 4px;
+  background: var(--lilac-soft); border-radius: 999px;
+}
+.segmented button {
+  height: 36px; border: 0; border-radius: 999px; background: none; cursor: pointer;
+  color: #5d4f68; font-weight: 500;
+  transition: background-color 200ms var(--ease), color 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.segmented button:hover { color: var(--ink); }
+.segmented button[aria-pressed="true"] { background: var(--card); color: var(--ink); font-weight: 650; box-shadow: 0 4px 12px -6px rgba(70, 35, 90, .4); }
+
+.shortcut { display: grid; gap: 6px; margin: -2px 0 0; }
+.shortcut-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 600; }
+/* The chip is the recorder: click it, press a combo, it saves. */
+.keychip {
+  display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 8px 0 14px;
+  border: 1.5px solid var(--line); border-radius: 999px; background: var(--card); box-shadow: var(--shadow);
+  font-weight: 650; font-size: 13px; letter-spacing: .01em; font-variant-numeric: tabular-nums; cursor: pointer;
+  transition: border-color 160ms var(--ease), background-color 160ms var(--ease), transform 140ms var(--ease);
+}
+.keychip::after {
+  content: ""; width: 20px; height: 20px; border-radius: 50%; flex: none;
+  background: var(--peach-soft) center / 11px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M230.14,70.54,185.46,25.85a20,20,0,0,0-28.29,0L33.86,149.17A19.85,19.85,0,0,0,28,163.31V208a20,20,0,0,0,20,20H92.69a19.86,19.86,0,0,0,14.14-5.86L230.14,98.82a20,20,0,0,0,0-28.28ZM91,204H52V165l84-84,39,39ZM192,103,153,64l18.34-18.34,39,39Z' fill='%23c4501a'/%3E%3C/svg%3E");
+}
+.keychip:hover { border-color: #f6b48d; }
+.keychip:active { transform: scale(.97); }
+.keychip[aria-pressed="true"] {
+  border-color: var(--peach); background: var(--peach-soft); color: var(--peach-deep);
+  animation: listen 1.2s var(--ease) infinite;
+}
+.keychip[aria-pressed="true"]::after {
+  background: var(--peach) center / 8px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Ccircle cx='4' cy='4' r='3.2' fill='white'/%3E%3C/svg%3E");
+}
+@keyframes listen { 50% { box-shadow: 0 0 0 5px rgba(242, 122, 54, .18); } }
+.key-hint { margin: 0; color: var(--muted); font-size: 12.5px; text-align: right; }
+.key-hint:empty { display: none; }
+
+.toggle-row { display: flex; align-items: center; gap: 12px; justify-content: space-between; cursor: pointer; }
+
+/* Size: lilac-to-peach track, like the reference's session slider. */
+.size { display: grid; gap: 10px; }
+.size-head { display: flex; align-items: baseline; justify-content: space-between; }
+.size output { font-size: 18px; font-weight: 700; color: var(--peach-deep); font-variant-numeric: tabular-nums; }
+input[type="range"] {
+  appearance: none; width: 100%; height: 14px; margin: 0; border-radius: 999px; cursor: pointer;
+  background: linear-gradient(90deg, #b6a6ea, #e9a7a0 55%, #f6a04f);
+}
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none; width: 24px; height: 24px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--peach);
+  box-shadow: 0 4px 10px -2px rgba(140, 60, 20, .4);
+  transition: transform 140ms var(--ease);
+}
+input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.12); }
+
+/* Scrollbar: the native one (and its gutter) is hidden; popup.js draws a thumb that floats over the content while scrolling. */
+html { scrollbar-width: none; }
+::-webkit-scrollbar { display: none; }
+.thumb { position: fixed; right: 3px; top: 0; width: 6px; border-radius: 999px; background: var(--lilac); opacity: 0; pointer-events: none; transition: opacity 300ms var(--ease); }
+.thumb.on { opacity: .8; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@font-face { font-family: "Looptions Roboto"; font-weight: 100 900; font-display: swap; src: url("../fonts/roboto-latin.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Looptions Roboto"; font-weight: 100 900; font-display: swap; src: url("../fonts/roboto-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+
+/* Number field: same white pill as the dropdowns, unit inside it. */
+.num { display: flex; align-items: center; gap: 6px; width: 92px; height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); box-shadow: var(--shadow); }
+.num:focus-within { border-color: var(--peach-deep); box-shadow: 0 0 0 2px var(--peach-deep); }
+.num input, .num input:focus-visible { flex: 1; width: 100%; min-width: 0; padding: 0; border: 0; outline: 0; background: none; font-weight: 600; font-variant-numeric: tabular-nums; appearance: textfield; }
+.num input::-webkit-inner-spin-button, .num input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.num small { color: var(--muted); }
+/* Arrow stepper: the same pill with a chevron button at each end; the value sits in the middle. */
+.num.step { width: 100%; padding: 0 4px; gap: 2px; }
+.num.step:focus-within { border-color: var(--line); box-shadow: var(--shadow); } /* the focused button draws its own ring */
+.step button { display: grid; place-items: center; flex: none; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 999px; background: none; color: var(--muted); cursor: pointer; transition: background 140ms var(--ease), color 140ms var(--ease); }
+.step button:hover { background: var(--lilac-soft); color: var(--ink); }
+.step button:active { background: var(--peach-soft); color: var(--peach-deep); }
+/* Value + unit centred together between the arrows. */
+.step output { margin-left: auto; font-weight: 600; font-variant-numeric: tabular-nums; }
+.step small { margin-right: auto; }
+/* Small peach icon before a setting name (same icons as the in-video feedback). */
+.lbl-ic { width: 1.05em; height: 1.05em; margin-right: .4em; vertical-align: -.17em; color: var(--peach-deep); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }

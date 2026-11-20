@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Looptions – Çift Altyazı",
+  "version": "1.0.0",
+  "minimum_chrome_version": "111",
+  "description": "Video oynatıcılardaki altyazıları bulur, iki dili aynı anda gösterir.",
+  "permissions": ["storage", "webRequest", "favicon"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "src/background.js" },
+  "icons": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" }
+  },
+  "options_page": "pages/options.html",
+  "web_accessible_resources": [{ "resources": ["fonts/*.woff2", "popup/fonts/*.woff2"], "matches": ["<all_urls>"] }],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "all_frames": true,
+      "match_origin_as_fallback": true,
+      "run_at": "document_start",
+      "world": "MAIN",
+      "js": ["src/inject/main-world.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "all_frames": true,
+      "match_origin_as_fallback": true,
+      "run_at": "document_idle",
+      "js": [
+        "src/core/parse.js",
+        "src/core/lang.js",
+        "src/core/i18n.js",
+        "src/core/words-en.js",
+        "src/core/freq-en.js",
+        "src/core/vocab.js",
+        "src/core/ability.js",
+        "src/core/menu.js",
+        "src/core/overlay.js",
+        "src/content/content.js"
+      ]
+    }
+  ]
+}

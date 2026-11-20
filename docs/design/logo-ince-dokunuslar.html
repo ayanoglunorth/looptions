@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Looptions — logo üç karar</title><style>
+@font-face{font-family:Outfit;src:url('../../popup/fonts/outfit-latin.woff2')}
+*{box-sizing:border-box}body{margin:0;background:#fcf9fb;color:#2d2134;font-family:Outfit,'Segoe UI',sans-serif}
+main{max-width:1000px;margin:auto;padding:48px 20px 80px}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.05;letter-spacing:-.04em;margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:#fff;border:1px solid #ece3ef;border-radius:24px;padding:16px}
+.tile{display:grid;place-items:center;height:220px;border-radius:18px;background:#f8f4fa}
+.tile svg{width:140px;height:140px}
+.row{display:flex;gap:10px;margin-top:12px}
+.chip{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:#f8f4fa}
+.chip.dark{background:#2d2134}.chip svg{width:30px;height:30px}.chip.s svg{width:16px;height:16px}
+b{display:block;font-size:18px;margin-top:14px}p{font-size:14px;line-height:1.45;color:#665b70;margin:4px 0 0}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<clipPath id="c1"><circle cx="9" cy="12" r="6.5"/></clipPath>
+<clipPath id="c2"><rect x="2.5" y="7.5" width="19" height="9" rx="4.5"/></clipPath>
+</defs></svg>
+<main>
+<h1>Üç karar.</h1>
+<div class="grid" id="g"></div>
+</main>
+<script>
+const O='#f27a36',L='#a594e3',M='#dd8aa3';
+const V=[
+['İki o','“Looptions” içindeki iki o: iki daire, iki dil. Kesişim üçüncü renk. Altyazı çizgisi göndermesi yok.',
+`<circle cx="9" cy="12" r="6.5" fill="${O}"/><circle cx="15" cy="12" r="6.5" fill="${L}"/><circle cx="15" cy="12" r="6.5" fill="${M}" clip-path="url(#c1)"/>`],
+['Tek hap','İki satır yerine tek kalın satır, ortada eğik bir dikişle iki dil. Daha az “altyazı ikonu”, daha çok işaret.',
+`<g clip-path="url(#c2)"><rect x="2" y="7" width="20" height="10" fill="${O}"/><polygon points="13.5,7 22,7 22,17 10.5,17" fill="${L}"/></g>`],
+['Ekran','Leylak oynatıcı, içinde tek turuncu altyazı. Haplar bir şeyin içine oturunca ikon olmaktan çıkıp sahne olur.',
+`<rect x="2.5" y="4.5" width="19" height="15" rx="5.5" fill="${L}"/><rect x="6" y="12.5" width="12" height="3.6" rx="1.8" fill="${O}"/>`]
+];
+const s=x=>`<svg viewBox="0 0 24 24" style="isolation:isolate" aria-hidden="true">${x}</svg>`;
+g.innerHTML=V.map(([n,d,x])=>`<article class="card"><div class="tile">${s(x)}</div><div class="row"><div class="chip">${s(x)}</div><div class="chip s">${s(x)}</div><div class="chip dark">${s(x)}</div></div><b>${n}</b><p>${d}</p></article>`).join('');
+</script></body></html>

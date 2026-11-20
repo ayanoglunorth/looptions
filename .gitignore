@@ -1,0 +1,11 @@
+.impeccable/
+node_modules/
+*.zip
+*.crx
+*.pem
+.DS_Store
+Thumbs.db
+dist/
+worker/.wrangler/
+worker/.dev.vars
+promo/

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Looptions'a hoş geldin</title>
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <main class="onb">
+    <aside class="stage grain field-peach">
+      <div class="badge" id="badge"></div>
+      <div class="scene" aria-hidden="true">
+        <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+        <div class="screen">
+          <span class="play"><svg viewBox="0 0 256 256"><path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"/></svg></span>
+          <span class="ss" id="ssA"></span>
+          <span class="ss b" id="ssB"></span>
+        </div>
+        <div class="levels" id="sceneLevels"></div>
+      </div>
+      <p class="stage-note" id="note"></p>
+    </aside>
+
+    <section class="panel">
+      <div class="panel-top">
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="4.5" rx="2.25" fill="#f27a36"/><rect x="6.5" y="16.5" width="11" height="4.5" rx="2.25" fill="#a594e3"/></svg>
+        </span>
+        <span class="brand wordmark">Loop<span>tions</span></span>
+        <button type="button" class="ghost" id="skip">Şimdilik geç</button>
+      </div>
+
+      <form id="flow" novalidate>
+        <div class="step" data-step="0">
+          <p class="kicker">Ön kurulum</p>
+          <h2>Ana dilin hangisi?</h2>
+          <p class="lede">Alt satır bu dilde görünür. Takıldığın yerde ona bakarsın.</p>
+          <fieldset class="langs" id="native" aria-label="Ana dil"></fieldset>
+        </div>
+
+        <div class="step" data-step="1" hidden>
+          <p class="kicker">Ön kurulum</p>
+          <h2>Hangi dili öğreniyorsun?</h2>
+          <p class="lede">Bu dil üst satırda büyük görünür. Videoda bu dilde altyazı yoksa tek satır gösterilir ve eklenti bunu söyler.</p>
+          <fieldset class="langs" id="learn" aria-label="Öğrendiğin dil"></fieldset>
+        </div>
+
+        <div class="step" data-step="2" hidden>
+          <p class="kicker">Kelime testi</p>
+          <h2>İngilizcen hangi seviyede?</h2>
+          <p class="lede">Seviyen, istersen açabileceğin video öncesi kelime testinde sorulacak kelimeleri belirler.</p>
+          <div class="place-card">
+            <div id="placeIntro">
+              <p class="place-title">Seviyeni testle bulalım</p>
+              <p class="place-note">Kelime ve cümlelerden oluşan, birkaç dakikalık kısa bir test. Kelimelerin bir kısmı gerçek değil; emin değilsen "Bilmiyorum" de.</p>
+              <button type="button" class="place-start" id="placeStart">Testi başlat</button>
+              <p class="place-result" id="placeResult" role="status" hidden></p>
+            </div>
+            <div class="place" id="placeRun" hidden>
+              <div class="place-top">
+                <p class="place-count" id="placeCount"></p>
+                <button type="button" class="place-back" id="placeBack">Geri</button>
+              </div>
+              <div id="placeWordBox">
+                <p class="place-word" id="placeWord" lang="en"></p>
+                <p class="lede" style="margin:0">Bu kelimeyi biliyor musun?</p>
+                <div class="place-row">
+                  <button type="button" class="no" id="placeNo">Bilmiyorum</button>
+                  <button type="button" class="yes" id="placeYes">Biliyorum</button>
+                </div>
+              </div>
+              <div id="placeClozeBox" hidden>
+                <p class="place-q" id="placeQ" lang="en"></p>
+                <div class="place-opts" id="placeOpts"></div>
+                <button type="button" class="place-skip" id="placeSkip">Bilmiyorum</button>
+                <p class="place-hint">Emin değilsen tahmin etme, "Bilmiyorum" de.</p>
+              </div>
+            </div>
+          </div>
+          <div id="levelFields">
+            <label class="toggle-row quiz-opt">
+              <span><b>Video öncesi kelime testi</b><small class="hint block">Kapalı gelir. Açarsan, İngilizce bir video başlamadan önce altyazıdan seçilen kelimeler sorulur. Bu kelimeler ve dil çifti, anlamları için çeviri hizmetimize (Microsoft Translator) gönderilir. Sayfa adresi, video adı ve altyazının geri kalanı gönderilmez.</small></span>
+              <input type="checkbox" class="switch" id="preQuiz" role="switch">
+            </label>
+            <p class="place-or">ya da kendin seç</p>
+            <div class="field">
+              <label for="level">Seviyem</label>
+              <select id="level"></select>
+            </div>
+            <div class="field">
+              <label for="quizSize">Video öncesi en fazla kaç kelime?</label>
+              <select id="quizSize"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="step" data-step="3" hidden>
+          <p class="kicker">Görünüm</p>
+          <h2>Altyazın nasıl görünsün?</h2>
+          <p class="lede">Önizleme seçtiklerinle değişir. Hepsini sonra eklenti simgesinden de ayarlayabilirsin.</p>
+          <div class="look">
+            <figure class="preview" aria-label="Önizleme">
+              <div class="frame" id="frame" data-mode="dual" data-show="primary">
+                <div class="box">
+                  <span class="pv primary" id="pvPrimary"></span>
+                  <span class="pv secondary" id="pvSecondary"></span>
+                </div>
+              </div>
+            </figure>
+            <div class="segmented" role="group" aria-label="Gösterim">
+              <button type="button" data-mode="dual" aria-pressed="true">İkisi birlikte</button>
+              <button type="button" data-mode="swap" aria-pressed="false">Tuşla geçiş</button>
+            </div>
+            <div id="shortcut" class="shortcut" hidden>
+              <div class="shortcut-row">
+                <span id="keyLabel">Dil değiştirme tuşu</span>
+                <button type="button" class="keychip" id="key" aria-labelledby="keyLabel key" aria-describedby="keyHint"></button>
+              </div>
+              <p id="keyHint" class="key-hint" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="style">Altyazı stili</label>
+              <select id="style"></select>
+            </div>
+            <div class="field">
+              <label for="font">Yazı tipi</label>
+              <select id="font"></select>
+            </div>
+            <div class="size">
+              <div class="size-head">
+                <label for="size">Yazı boyutu</label>
+                <output id="sizeOut" for="size"></output>
+              </div>
+              <input type="range" id="size" min="60" max="160" step="10">
+            </div>
+          </div>
+        </div>
+
+        <div class="step" data-step="4" hidden>
+          <p class="kicker">Hazırsın</p>
+          <h2 id="doneTitle"></h2>
+          <p class="lede">Gerisi kendiliğinden. Altyazıyı oynatıcıdan bir kez açman yeterli.</p>
+          <ol class="howto">
+            <li><b>Videoyu aç</b><span>YouTube, Netflix ya da altyazılı herhangi bir oynatıcı.</span></li>
+            <li><b>Altyazıyı aç</b><span>Oynatıcının kendi altyazı düğmesinden, bir kez.</span></li>
+            <li><b>İki dil birden</b><span>Looptions iki satırı videonun üstüne yerleştirir.</span></li>
+          </ol>
+          <p class="after">Ayarların hepsi eklenti simgesinde ve <a href="options.html">gelişmiş ayarlarda</a>.</p>
+        </div>
+
+        <div class="foot-nav">
+          <button type="button" class="back" id="back">
+            <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H69l51.52,51.51a12,12,0,0,1-17,17l-72-72a12,12,0,0,1,0-17l72-72a12,12,0,0,1,17,17L69,116H216A12,12,0,0,1,228,128Z"/></svg>Geri
+          </button>
+          <ol class="steps" id="steps" aria-label="Adımlar">
+            <li>1<small>Ana dil</small></li>
+            <li>2<small>Öğrenilen</small></li>
+            <li>3<small>Seviye</small></li>
+            <li>4<small>Görünüm</small></li>
+            <li>5<small>Bitti</small></li>
+          </ol>
+          <button type="submit" class="next" id="next" aria-label="İleri">
+            <svg viewBox="0 0 256 256" aria-hidden="true"><path id="nextIcon" d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="../src/core/lang.js"></script>
+  <script src="../src/core/words-en.js"></script>
+  <script src="../src/core/freq-en.js"></script>
+  <script src="../src/core/vocab.js"></script>
+  <script src="../src/core/ability.js"></script>
+  <script src="../src/core/cloze-en.js"></script>
+  <script src="../src/core/placement.js"></script>
+  <script src="../src/core/i18n.js"></script>
+  <script src="welcome.js"></script>
+</body>
+</html>
