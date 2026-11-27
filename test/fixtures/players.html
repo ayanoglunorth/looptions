@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Looptions players fixture</title>
+<style>body{font:14px system-ui;margin:24px;background:#eee}video{display:block;width:640px;height:360px;background:#000}</style>
+</head>
+<body>
+  <h2>Playerjs config + extension-less XHR subtitle + HLS master playlist</h2>
+  <video id="v" src="clip.mp4" muted autoplay loop></video>
+  <script>
+    // Stand-in for playerjs.com's constructor: subtitles only exist in its options.
+    window.Playerjs = function (opts) { this.opts = opts; };
+    new Playerjs({ id: 'v', file: 'clip.mp4', subtitle: '[English]subs/movie.English.srt' });
+
+    // A player that fetches subtitles from a URL with no file extension.
+    const x = new XMLHttpRequest();
+    x.open('GET', 'subs/track-tr');
+    x.send();
+
+    // An HLS player reads the master playlist (subtitle renditions live in it).
+    fetch('hls/master.m3u8');
+  </script>
+</body>
+</html>

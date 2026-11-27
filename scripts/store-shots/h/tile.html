@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 440px; height: 280px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+  /* Exact moody warm-eggplant + peach/lilac palette from original promo tile, with Promo D's crisp centered structure */
+  .p-canvas {
+    position: relative; width: 440px; height: 280px; overflow: hidden;
+    background:
+      radial-gradient(68% 85% at 96% 8%, rgba(242, 122, 54, .44) 0%, rgba(242, 122, 54, 0) 64%),
+      radial-gradient(65% 80% at 6% 96%, rgba(165, 148, 227, .36) 0%, rgba(165, 148, 227, 0) 66%),
+      linear-gradient(148deg, #321F46 0%, #1C1129 62%, #130B1D 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 18px 24px; box-sizing: border-box;
+  }
+  /* Soft ambient warm halo + deep shadow separates the 1A icon naturally with ZERO white border ring */
+  .p-icon-wrap { position: relative; width: 70px; height: 70px; display: grid; place-items: center; }
+  .p-icon-wrap::before {
+    content: ""; position: absolute; inset: -18px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(242, 122, 54, .34) 0%, rgba(165, 148, 227, .16) 46%, rgba(165, 148, 227, 0) 72%);
+    z-index: 0;
+  }
+  .p-icon {
+    position: relative; z-index: 1; width: 70px; height: 70px; border-radius: 17px; overflow: hidden;
+    box-shadow: 0 22px 40px -8px rgba(4, 1, 10, .92), 0 8px 18px -4px rgba(4, 1, 10, .72);
+  }
+  .p-icon svg { display: block; width: 100%; height: 100%; }
+  h1 {
+    position: relative; z-index: 2;
+    margin: 0; text-align: center; font-size: 40px; font-weight: 700; line-height: 1.05; letter-spacing: -.035em; color: #FFFDFB;
+    text-shadow: 0 4px 18px rgba(8, 3, 16, .48);
+  }
+  h1 .hl { color: #FF9A54; }
+  p { position: relative; z-index: 2; margin: 0; font-size: 15.5px; font-weight: 550; letter-spacing: -.01em; color: rgba(244, 236, 252, .82); }
+</style>
+</head>
+<body>
+  <div class="p-canvas grain">
+    <div class="p-icon-wrap">
+      <div class="p-icon">
+        <svg viewBox="0 0 128 128"><defs><linearGradient id="pt-bg" x1="12%" y1="6%" x2="88%" y2="96%"><stop offset="0%" stop-color="#3E2854"/><stop offset="100%" stop-color="#1E132B"/></linearGradient><radialGradient id="pt-gl" cx="82%" cy="18%" r="58%"><stop offset="0%" stop-color="#F27A36" stop-opacity=".28"/><stop offset="100%" stop-color="#F27A36" stop-opacity="0"/></radialGradient><linearGradient id="pt-bk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF9B54"/><stop offset="100%" stop-color="#E85E24"/></linearGradient><mask id="pt-cut"><rect width="128" height="128" fill="#fff"/><rect x="16" y="38" width="74" height="74" rx="22" fill="#000"/></mask></defs><rect width="128" height="128" rx="30" fill="url(#pt-bg)"/><rect width="128" height="128" rx="30" fill="url(#pt-gl)"/><rect x="44" y="22" width="62" height="62" rx="17" fill="url(#pt-bk)" mask="url(#pt-cut)"/><rect x="22" y="44" width="62" height="62" rx="17" fill="#FFFDFB"/><rect x="33" y="64" width="21" height="9.5" rx="4.75" fill="#2D2134"/><rect x="57.5" y="64" width="15.5" height="9.5" rx="4.75" fill="#F27A36"/><rect x="33" y="78" width="31" height="9.5" rx="4.75" fill="#9D8CE0"/></svg>
+      </div>
+    </div>
+    <h1>Dual Subtitles.<br>Click. Save. <span class="hl">Learn.</span></h1>
+    <p>Instant translation · Pre-video quiz · Spaced repetition</p>
+  </div>
+</body>
+</html>

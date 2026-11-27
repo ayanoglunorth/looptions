@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Looptions – Destek / Support</title>
+<style>
+  body { font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; max-width: 46rem; margin: 0 auto; padding: 2rem 1rem 4rem; color: #2d2134; background: #fcf9fb; }
+  h1 { font-size: 1.7rem; line-height: 1.25; } h2 { font-size: 1.2rem; margin-top: 2.2rem; } h3 { font-size: 1rem; margin: 1.4rem 0 .2rem; }
+  a { color: #a9420f; } nav a { margin-right: 1rem; } p { margin: .3rem 0; }
+</style>
+</head>
+<body>
+<nav id="langnav"><a href="#en" data-l="en">English</a> <a href="#tr" data-l="tr">Türkçe</a> <a href="/">Privacy / Gizlilik</a></nav>
+
+
+<section id="en" lang="en">
+<h1>Looptions Support</h1>
+<p>For questions or reports, write to <a href="mailto:nadasmobile@proton.me">nadasmobile@proton.me</a>. Please include your browser version, the site you were using, and what happened; it helps us fix things faster.</p>
+
+<h2>Common questions</h2>
+<h3>No subtitles appear</h3>
+<p>Turn on subtitles once with the player's own subtitle button. If they still do not appear, the player may keep its subtitles away from extensions, and Looptions cannot show those.</p>
+<h3>"This video has no … subtitles" message</h3>
+<p>The video has no subtitle track for the second language you chose. Check the video's own subtitle menu. Looptions does not translate subtitles itself.</p>
+<h3>"Translation is currently unavailable"</h3>
+<p>The translation service could not be reached. Check your connection and try again in a moment.</p>
+<h3>"This month's translation quota is used up"</h3>
+<p>The translation service's monthly limit has been reached and renews at the start of the month. Subtitle display and your saved words are not affected.</p>
+<h3>Turning Looptions off on a site</h3>
+<p>Advanced settings → Sites.</p>
+<h3>How do I delete my data?</h3>
+<p>Data in your browser is deleted when you uninstall the extension. You can delete saved words one by one or all at once in the word notebook. See the <a href="/">privacy policy</a> for details.</p>
+</section>
+
+<section id="tr" lang="tr">
+<h1>Looptions Destek</h1>
+<p>Bir sorunuz ya da bildiriminiz varsa <a href="mailto:nadasmobile@proton.me">nadasmobile@proton.me</a> adresine yazın. Yazarken tarayıcı sürümünü, hangi sitede kullandığınızı ve ne olduğunu belirtmeniz çözümü hızlandırır.</p>
+
+<h2>Sık sorulanlar</h2>
+<h3>Altyazı görünmüyor</h3>
+<p>Oynatıcının kendi altyazı düğmesinden altyazıyı bir kez açın. Hâlâ görünmüyorsa oynatıcı altyazısını eklentilerden saklıyor olabilir; Looptions bunları gösteremez.</p>
+<h3>"Bu videoda … altyazı yok" mesajı</h3>
+<p>Videoda seçtiğiniz ikinci dil için altyazı parçası yok. Videonun kendi altyazı menüsüne bakın. Looptions altyazıyı kendisi çevirmez.</p>
+<h3>"Çeviri şu an kullanılamıyor"</h3>
+<p>Çeviri hizmetine ulaşılamadı. Bağlantınızı kontrol edip biraz sonra tekrar deneyin.</p>
+<h3>"Bu ayki çeviri kotası doldu"</h3>
+<p>Çeviri hizmetinin aylık sınırı doldu ve ay başında yenilenir. Altyazı gösterimi ve kayıtlı kelimeleriniz bundan etkilenmez.</p>
+<h3>Bir sitede Looptions'ı kapatmak</h3>
+<p>Gelişmiş ayarlar → Siteler.</p>
+<h3>Verilerimi nasıl silerim?</h3>
+<p>Eklentiyi kaldırınca tarayıcıdaki veriler silinir. Kelime defterinde kelimeleri tek tek ya da hepsini silebilirsiniz. Ayrıntılar için <a href="/">gizlilik politikasına</a> bakın.</p>
+</section>
+<script>
+// English first; Turkish for Turkish browsers or on click. Without JS both stay visible.
+(() => {
+  const show = l => document.querySelectorAll('section[lang]').forEach(x => { x.hidden = x.lang !== l; });
+  document.documentElement.lang = 'en';
+  const pick = localStorage.getItem('looptions_lang') || (navigator.language || '').slice(0, 2);
+  show(pick === 'tr' ? 'tr' : 'en');
+  document.querySelectorAll('#langnav a[data-l]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); localStorage.setItem('looptions_lang', a.dataset.l); show(a.dataset.l); }));
+})();
+</script>
+</body>
+</html>

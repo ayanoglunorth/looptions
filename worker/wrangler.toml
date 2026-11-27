@@ -1,0 +1,9 @@
+name = "looptions-lookup"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+# Fill database_id with the id printed by: npx wrangler d1 create looptions --location weur
+[[d1_databases]]
+binding = "DB"
+database_name = "looptions"
+database_id = "00000000-0000-0000-0000-000000000000"

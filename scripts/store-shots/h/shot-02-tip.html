@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #fff; }
+  .s-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(56% 70% at 95% 4%, rgba(242, 122, 54, .32) 0%, rgba(242, 122, 54, 0) 64%),
+      radial-gradient(55% 75% at 4% 98%, rgba(165, 148, 227, .28) 0%, rgba(165, 148, 227, 0) 68%),
+      linear-gradient(155deg, #2D1D41 0%, #1B1128 58%, #130B1D 100%);
+  }
+  .s-head { position: absolute; left: 80px; right: 80px; top: 56px; }
+  h1 { margin: 0; font-size: 52px; font-weight: 700; letter-spacing: -.03em; line-height: 1.06; color: #FFFDFB; }
+  h1 .hl { color: #FF9A54; }
+  .s-sub { margin: 8px 0 0; font-size: 20px; font-weight: 450; color: rgba(242, 234, 250, .78); }
+
+  /* Exact 1024:425 native cinemascope stage — ZERO black bars, ZERO cropping, ZERO upscaling blur */
+  .s-stage {
+    position: absolute; left: 80px; top: 214px; width: 1120px; height: 465px;
+    border-radius: 26px; overflow: hidden; background: #09060d;
+    box-shadow: 0 46px 92px -22px rgba(6, 2, 12, .88), 0 18px 36px -14px rgba(6, 2, 12, .68);
+  }
+  .s-scene {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: contrast(1.04) saturate(1.05);
+  }
+  .s-scrim {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(9, 6, 13, .72) 0%, rgba(9, 6, 13, .12) 24%, rgba(9, 6, 13, 0) 42%);
+  }
+  video { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+  <div class="s-bg grain"></div>
+  <div class="s-head">
+    <h1>Click any word. <span class="hl">Translate &amp; save.</span></h1>
+    <p class="s-sub">Clicking a word pauses the video, shows its meaning right above, and saves it in one click.</p>
+  </div>
+
+  <div class="s-stage">
+    <img class="s-scene" src="/h/scene-dpw.jpg" alt="">
+    <div class="s-scrim"></div>
+    <video id="v" muted></video>
+  </div>
+
+  <script src="/__mock.js"></script>
+  <script src="/src/core/parse.js"></script><script src="/src/core/lang.js"></script><script src="/src/core/i18n.js"></script>
+  <script src="/src/core/words-en.js"></script><script src="/src/core/freq-en.js"></script><script src="/src/core/vocab.js"></script><script src="/src/core/ability.js"></script>
+  <script src="/src/core/menu.js"></script><script src="/src/core/overlay.js"></script>
+  <script>
+    const v = document.getElementById('v');
+    Object.defineProperty(v, 'currentTime', { get: () => 5, set() {} });
+    Object.defineProperty(v, 'paused', { get: () => true });
+    v.play = () => Promise.resolve(); v.pause = () => {};
+    const cue = text => [{ start: 0, end: 10, text }];
+    const L1 = 'No dije nunca que estuviera reacio a ayudar.';
+    const L2 = 'I never said I was reluctant to help.';
+    const prefs = DS.mergePrefs({ primary: 'es', secondary: 'en', size: 122, lift: 7, logo: 'off', style: 'standard', font: 'roboto' });
+    window.ov = DS.createOverlay();
+    ov.set({
+      video: v,
+      lines: [
+        { getCues: () => cue(L2), offset: 0, role: 'secondary', lang: 'en' },
+        { getCues: () => cue(L1), offset: 0, role: 'primary', lang: 'es' }
+      ],
+      size: prefs.size, mode: 'dual', align: true, font: prefs.font, look: DS.lookVars(prefs), logo: 'off',
+      prefs, sel: {}, onPrefs() {}, onSel() {},
+      onWord: () => Promise.resolve('reluctant, unwilling'),
+      onSave: () => Promise.resolve()
+    });
+    const host = document.querySelector('looptions-overlay');
+    if (host) {
+      host.style.setProperty('border-radius', '26px', 'important');
+      host.style.setProperty('overflow', 'hidden', 'important');
+    }
+  </script>
+</body>
+</html>

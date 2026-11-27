@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Looptions</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="top">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 128 128"><defs><linearGradient id="lp-p-bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFBF8"/><stop offset="100%" stop-color="#F1E9FA"/></linearGradient><linearGradient id="lp-p-bk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#A694EA"/><stop offset="100%" stop-color="#7B65D4"/></linearGradient><linearGradient id="lp-p-fr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF9048"/><stop offset="100%" stop-color="#E3591E"/></linearGradient><mask id="lp-p-cut"><rect width="128" height="128" fill="#fff"/><rect x="16" y="38" width="74" height="74" rx="22" fill="#000"/></mask></defs><rect width="128" height="128" rx="30" fill="url(#lp-p-bg)"/><rect x="44" y="22" width="62" height="62" rx="17" fill="url(#lp-p-bk)" mask="url(#lp-p-cut)"/><rect x="22" y="44" width="62" height="62" rx="17" fill="url(#lp-p-fr)"/><rect x="33" y="64" width="21" height="9.5" rx="4.75" fill="#fff"/><rect x="57.5" y="64" width="15.5" height="9.5" rx="4.75" fill="#FFE29E"/><rect x="33" y="78" width="31" height="9.5" rx="4.75" fill="#fff" fill-opacity=".76"/></svg>
+      </span>
+      <div class="title">
+        <h1 class="wordmark">Loop<span>tions</span></h1>
+        <p id="status" class="status" role="status"></p>
+      </div>
+      <button type="button" class="gear" id="more" aria-label="Kelime defteri ve gelişmiş ayarlar" title="Kelime defteri ve gelişmiş ayarlar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(-9 9.5 12.5)"><rect x="3" y="5" width="12" height="14.5" rx="3.5" fill="#a594e3"/></g><g transform="rotate(8 14.5 12)"><rect x="8.5" y="4" width="12" height="15" rx="3.5" fill="#f27a36"/><rect x="11.2" y="9.6" width="6.6" height="2.3" rx="1.15" fill="#fff"/><rect x="11.2" y="13.4" width="4.4" height="2.3" rx="1.15" fill="#fff"/></g></svg>
+      </button>
+      <span id="powerLabel" class="power-label" aria-hidden="true"></span>
+      <button type="button" class="switch" id="enabled" role="switch" aria-checked="true" aria-label="Looptions'ı etkinleştir"></button>
+    </div>
+
+    <figure class="preview" aria-label="Önizleme">
+      <div class="frame" id="frame" data-mode="dual" data-show="primary">
+        <div class="box">
+          <span class="pv primary" id="pvPrimary"></span>
+          <span class="pv secondary" id="pvSecondary"></span>
+        </div>
+      </div>
+    </figure>
+  </header>
+
+  <main id="controls">
+    <p id="empty" class="empty" hidden>
+      Bu sekmede henüz altyazı yok. Videoyu başlat ve oynatıcıdan altyazıyı bir kez aç; bulunanlar burada listelenir.
+    </p>
+
+    <section class="group" aria-label="Diller">
+      <div class="field">
+        <label for="primary">Hedef dil <span class="hint">öğrendiğin, üstte</span></label>
+        <div class="row">
+          <select id="primary"></select>
+          <div class="stepper" role="group" aria-label="Hedef dil zamanlaması">
+            <button type="button" class="round minus" data-slot="Primary" data-step="-0.25" aria-label="Hedef dili 0,25 sn öne al">
+              <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z"/></svg>
+            </button>
+            <output id="offsetPrimary">0,00 sn</output>
+            <button type="button" class="round plus" data-slot="Primary" data-step="0.25" aria-label="Hedef dili 0,25 sn geciktir">
+              <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="secondary">Ana dil <span class="hint">altta</span></label>
+        <div class="row">
+          <select id="secondary"></select>
+          <div class="stepper" role="group" aria-label="Ana dil zamanlaması">
+            <button type="button" class="round minus" data-slot="Secondary" data-step="-0.25" aria-label="Ana dili 0,25 sn öne al">
+              <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z"/></svg>
+            </button>
+            <output id="offsetSecondary">0,00 sn</output>
+            <button type="button" class="round plus" data-slot="Secondary" data-step="0.25" aria-label="Ana dili 0,25 sn geciktir">
+              <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="group" aria-label="Görünüm">
+      <div class="segmented" role="group" aria-label="Gösterim">
+        <button type="button" data-mode="dual" aria-pressed="true">İkisi birlikte</button>
+        <button type="button" data-mode="swap" aria-pressed="false">Tuşla geçiş</button>
+      </div>
+      <div id="shortcut" class="shortcut" hidden>
+        <div class="shortcut-row">
+          <span id="keyLabel">Dil değiştirme tuşu</span>
+          <button type="button" class="keychip" id="key" aria-labelledby="keyLabel key" aria-describedby="keyHint" title="Değiştirmek için tıkla"></button>
+        </div>
+        <p id="keyHint" class="key-hint" aria-live="polite"></p>
+      </div>
+      <label class="toggle-row">
+        <span>Satırlar birlikte değişsin <span class="hint block">alt satır üst satırın zamanını izler</span></span>
+        <input type="checkbox" class="switch" id="align" role="switch">
+      </label>
+      <div class="field">
+        <label for="style">Altyazı stili</label>
+        <select id="style"></select>
+      </div>
+      <div class="field">
+        <label for="font">Yazı tipi</label>
+        <select id="font"></select>
+      </div>
+      <div class="size">
+        <div class="size-head">
+          <label for="size">Yazı boyutu</label>
+          <output id="sizeOut" for="size"></output>
+        </div>
+        <input type="range" id="size" min="60" max="160" step="10">
+      </div>
+      <div class="size">
+        <div class="size-head">
+          <label for="bgOpacity">Arka plan opaklığı</label>
+          <output id="bgOpacityOut" for="bgOpacity"></output>
+        </div>
+        <input type="range" id="bgOpacity" min="0" max="150" step="10">
+      </div>
+      <div class="size">
+        <div class="size-head">
+          <label for="lift">Altyazı yüksekliği</label>
+          <output id="liftOut" for="lift"></output>
+        </div>
+        <input type="range" id="lift" min="0" max="40" step="1">
+      </div>
+      <div class="field">
+        <label for="logo">Oynatıcı logosu</label>
+        <select id="logo"></select>
+      </div>
+    </section>
+
+    <section class="group" id="quizGroup" aria-label="Kelime testi" hidden>
+      <label class="toggle-row">
+        <span>Video öncesi kelime testi <span class="hint block">İngilizce videolarda, başlamadan önce kelime sorar. Kelimeler çeviri için gönderilir.</span></span>
+        <input type="checkbox" class="switch" id="preQuiz" role="switch">
+      </label>
+      <div class="field">
+        <label for="level">İngilizce seviyen</label>
+        <select id="level"></select>
+      </div>
+      <div class="field">
+        <label for="quizSize">Soru sayısı (en fazla)</label>
+        <select id="quizSize"></select>
+      </div>
+    </section>
+
+    <section class="group" aria-label="Video hızı ve sarma">
+      <div class="pair">
+        <div class="field">
+          <label id="seekSecsLbl"><svg class="lbl-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>Sarma miktarı</label>
+          <div class="num step" data-pref="seekSecs" role="group" aria-labelledby="seekSecsLbl"><button type="button" data-dir="-1" aria-label="Sarma miktarı: azalt"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><output id="seekSecsOut" aria-live="polite"></output><small>sn</small><button type="button" data-dir="1" aria-label="Sarma miktarı: artır"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div>
+        </div>
+        <div class="field">
+          <label id="speedStepLbl"><svg class="lbl-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.34 19a10 10 0 1 1 17.32 0"/><path d="m12 14 4-4"/></svg>Hız adımı</label>
+          <div class="num step" data-pref="speedStep" role="group" aria-labelledby="speedStepLbl"><button type="button" data-dir="-1" aria-label="Hız adımı: azalt"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><output id="speedStepOut" aria-live="polite"></output><small>×</small><button type="button" data-dir="1" aria-label="Hız adımı: artır"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div>
+        </div>
+      </div>
+      <div class="shortcut" id="videoKeys"></div>
+      <p id="videoKeyHint" class="key-hint" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="../src/core/lang.js"></script>
+  <script src="../src/core/i18n.js"></script>
+  <script src="../src/core/vocab.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

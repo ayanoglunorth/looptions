@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #fff; }
+  .s-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(56% 70% at 95% 4%, rgba(242, 122, 54, .32) 0%, rgba(242, 122, 54, 0) 64%),
+      radial-gradient(55% 75% at 4% 98%, rgba(165, 148, 227, .28) 0%, rgba(165, 148, 227, 0) 68%),
+      linear-gradient(155deg, #2D1D41 0%, #1B1128 58%, #130B1D 100%);
+  }
+  .s-head { position: absolute; left: 96px; right: 96px; top: 44px; }
+  h1 { margin: 0; font-size: 52px; font-weight: 700; letter-spacing: -.03em; line-height: 1.06; color: #FFFDFB; }
+  h1 .hl { color: #FF9A54; }
+  .s-sub { margin: 8px 0 0; font-size: 20px; font-weight: 450; color: rgba(242, 234, 250, .78); }
+
+  /* Exact 1024:575 (16:9) aspect ratio — zero top/bottom or side crop, native sharpness */
+  .s-stage {
+    position: absolute; left: 113px; top: 170px; width: 1054px; height: 592px;
+    border-radius: 26px; overflow: hidden; background: #120406;
+    box-shadow: 0 46px 92px -22px rgba(6, 2, 12, .88), 0 18px 36px -14px rgba(6, 2, 12, .68);
+  }
+  .s-scene { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+  .s-scrim {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, #0d0203 0%, #110304 16%, rgba(17, 3, 4, .72) 24%, rgba(17, 3, 4, 0) 40%);
+  }
+  video { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+  <div class="s-bg grain"></div>
+  <div class="s-head">
+    <h1>Two languages, <span class="hl">one screen.</span></h1>
+    <p class="s-sub">Target language on top, your own language one line below — both changing together.</p>
+  </div>
+
+  <div class="s-stage">
+    <img class="s-scene" src="/h/scene-tokyo-top.jpg" alt="">
+    <div class="s-scrim"></div>
+    <video id="v" muted></video>
+  </div>
+
+  <script src="/__mock.js"></script>
+  <script src="/src/core/parse.js"></script><script src="/src/core/lang.js"></script><script src="/src/core/i18n.js"></script>
+  <script src="/src/core/words-en.js"></script><script src="/src/core/freq-en.js"></script><script src="/src/core/vocab.js"></script><script src="/src/core/ability.js"></script>
+  <script src="/src/core/menu.js"></script><script src="/src/core/overlay.js"></script>
+  <script>
+    const v = document.getElementById('v');
+    Object.defineProperty(v, 'currentTime', { get: () => 5, set() {} });
+    Object.defineProperty(v, 'paused', { get: () => true });
+    v.play = () => Promise.resolve(); v.pause = () => {};
+    const cue = text => [{ start: 0, end: 10, text }];
+    const prefs = DS.mergePrefs({ primary: 'es', secondary: 'en', size: 104, lift: 6, logo: 'off', style: 'standard', font: 'roboto' });
+    window.ov = DS.createOverlay();
+    ov.set({
+      video: v,
+      lines: [
+        { getCues: () => cue("My name's Tokyo."), offset: 0, role: 'secondary', lang: 'en' },
+        { getCues: () => cue('Me llamo Tokio.'), offset: 0, role: 'primary', lang: 'es' }
+      ],
+      size: prefs.size, mode: 'dual', align: true, font: prefs.font, look: DS.lookVars(prefs), logo: 'off',
+      prefs, sel: {}, onPrefs() {}, onSel() {}, onWord: () => Promise.resolve(''), onSave: () => Promise.resolve()
+    });
+    const host = document.querySelector('looptions-overlay');
+    if (host) {
+      host.style.setProperty('border-radius', '26px', 'important');
+      host.style.setProperty('overflow', 'hidden', 'important');
+    }
+  </script>
+</body>
+</html>

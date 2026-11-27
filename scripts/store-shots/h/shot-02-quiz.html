@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #fff; }
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(56% 70% at 94% 6%, rgba(242, 122, 54, .34) 0%, rgba(242, 122, 54, 0) 64%),
+      radial-gradient(55% 75% at 6% 96%, rgba(165, 148, 227, .32) 0%, rgba(165, 148, 227, 0) 68%),
+      linear-gradient(155deg, #2D1D41 0%, #1B1128 58%, #130B1D 100%);
+  }
+  .head {
+    position: absolute; left: 72px; right: 72px; top: 44px;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  }
+  h1 { margin: 0; font-size: 52px; font-weight: 700; letter-spacing: -.03em; line-height: 1.06; color: #FFFDFB; }
+  h1 .hl { color: #FF9A54; }
+  .sub { margin: 8px 0 0; font-size: 20px; font-weight: 450; color: rgba(242, 234, 250, .78); }
+  .tag-pill {
+    display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px;
+    background: rgba(242, 122, 54, .18); border: 1px solid rgba(255, 154, 84, .38);
+    font-size: 14.5px; font-weight: 650; color: #FFC79E; margin-bottom: 6px;
+  }
+
+  .s-stage {
+    position: absolute; left: 72px; top: 174px; width: 780px; height: 580px;
+    border-radius: 26px; overflow: hidden;
+    box-shadow: 0 42px 84px -22px rgba(0, 0, 0, .75), 0 0 0 1.5px rgba(255, 255, 255, .14);
+    background: #120b1b;
+  }
+  .scene { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.78); }
+  video { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
+
+  /* Floating summary card showing what comes right after the quiz */
+  .summary {
+    position: absolute; right: 64px; top: 214px; width: 340px;
+    padding: 24px 24px 22px; border-radius: 26px; background: #FCF9FB; color: #2D2134;
+    box-shadow: 0 34px 70px -18px rgba(0, 0, 0, .68), 0 0 0 1px rgba(255, 255, 255, .45);
+    display: flex; flex-direction: column; gap: 14px; z-index: 20;
+  }
+  .summary .kick { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #C4501A; }
+  .summary h2 { margin: -6px 0 2px; font-size: 22px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+  .wrow {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 11px 14px; border-radius: 16px; background: #fff; border: 1px solid #ECE3EF;
+    box-shadow: 0 6px 14px -10px rgba(70, 35, 90, .28);
+  }
+  .wrow b { font-size: 16px; font-weight: 650; color: #2D2134; display: block; }
+  .wrow span { font-size: 13.5px; color: #776A82; }
+  .wrow .sv {
+    padding: 6px 13px; border-radius: 999px; background: #EFE9FB; color: #5B4A8F;
+    font-size: 13px; font-weight: 650; flex: none;
+  }
+  .wrow .sv.done { background: #FDE9DC; color: #C4501A; }
+  .cta {
+    margin-top: 2px; text-align: center; padding: 13px 16px; border-radius: 999px; color: #fff; font-size: 15px; font-weight: 650;
+    background: radial-gradient(60% 80% at 100% 0%, #f7a466 0%, rgba(247, 164, 102, 0) 60%), linear-gradient(150deg, #c4501a, #a9420f);
+    box-shadow: 0 12px 24px -10px rgba(196, 80, 26, .65);
+  }
+</style>
+</head>
+<body>
+  <div class="bg grain"></div>
+  <div class="head">
+    <div>
+      <h1>Learn hard words <span class="hl">before you watch</span></h1>
+      <p class="sub">A quick warm-up picks tougher words from the video so you catch them effortlessly.</p>
+    </div>
+    <div class="tag-pill">Unique to Looptions</div>
+  </div>
+
+  <div class="s-stage">
+    <img class="scene" src="/h/scene-gtavi.jpg" alt="">
+    <video id="v" muted></video>
+  </div>
+
+  <div class="summary">
+    <span class="kick">After the warm-up</span>
+    <h2>You’ll hear these in the video</h2>
+    <div class="wrow">
+      <div><b>foundation</b><span>base, groundwork</span></div>
+      <span class="sv done">Saved</span>
+    </div>
+    <div class="wrow">
+      <div><b>reluctant</b><span>unwilling, hesitant</span></div>
+      <span class="sv">Save</span>
+    </div>
+    <div class="wrow">
+      <div><b>nuance</b><span>subtle difference</span></div>
+      <span class="sv">Save</span>
+    </div>
+    <div class="cta">Go to the video</div>
+  </div>
+
+  <script src="/__mock.js"></script>
+  <script src="/src/core/parse.js"></script><script src="/src/core/lang.js"></script><script src="/src/core/i18n.js"></script>
+  <script src="/src/core/words-en.js"></script><script src="/src/core/freq-en.js"></script><script src="/src/core/vocab.js"></script><script src="/src/core/ability.js"></script>
+  <script src="/src/core/menu.js"></script><script src="/src/core/overlay.js"></script>
+  <script>
+    const v = document.getElementById('v');
+    Object.defineProperty(v, 'currentTime', { get: () => 5, set() {} });
+    Object.defineProperty(v, 'paused', { get: () => true });
+    v.play = () => Promise.resolve(); v.pause = () => {};
+    const prefs = DS.mergePrefs({ primary: 'es', secondary: 'en', size: 110, lift: 5, logo: 'tr', style: 'standard', font: 'roboto' });
+    window.ov = DS.createOverlay();
+    ov.set({
+      video: v, lines: [], size: prefs.size, mode: 'dual', align: true, font: prefs.font, look: DS.lookVars(prefs), logo: 'tr',
+      prefs, sel: {}, onPrefs() {}, onSel() {}, onWord: () => Promise.resolve(''), onSave: () => Promise.resolve()
+    });
+    const WS = ['reluctant', 'stumble', 'thorough', 'foundation', 'eager', 'hesitate', 'nuance', 'bargain', 'reliable', 'gratitude'];
+    ov.showQuiz({
+      words: WS.map(word => ({ word })),
+      translate: w => Promise.resolve(w),
+      onDone() {}, onSave: () => Promise.resolve()
+    });
+  </script>
+</body>
+</html>

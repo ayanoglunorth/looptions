@@ -1,0 +1,56 @@
+/* Word notebook as a printable sheet (A4). On screen it is a preview; the print dialog's "Save as PDF" makes the file. Tokens come from the popup. */
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body.sheet { padding: 28px 16px 40px; background: var(--lilac-soft); color: var(--ink); font-size: 14px; }
+.toolbar { display: flex; align-items: center; gap: 16px; width: 210mm; max-width: 100%; margin: 0 auto 18px; }
+.toolbar p { margin: 0; color: #5e5169; font-size: 13px; }
+.toolbar button {
+  display: inline-flex; align-items: center; gap: 8px; flex: none; height: 44px; padding: 0 22px; border: 0; border-radius: 999px; cursor: pointer;
+  font: inherit; font-weight: 650; color: #fff; background: radial-gradient(60% 90% at 100% 0%, #f7a466, rgba(247, 164, 102, 0) 70%), linear-gradient(150deg, #c4501a, #a9420f);
+  box-shadow: 0 10px 20px -10px rgba(196, 80, 26, .8); transition: transform 160ms var(--ease);
+}
+.toolbar button:hover:not(:disabled) { transform: translateY(-1px); }
+.toolbar button:disabled { background: var(--paper); color: var(--muted); box-shadow: none; cursor: default; }
+.toolbar svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.doc { width: 210mm; max-width: 100%; min-height: 297mm; margin: 0 auto; border-collapse: collapse; background: var(--paper); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; }
+.doc td { padding: 0; vertical-align: top; }
+.doc tbody td { padding: 14mm 14mm 6mm; }
+.doc thead { display: table-header-group; } /* empty, repeats: the top margin of every printed page */
+.doc .gap { height: 0; }
+.doc tfoot { display: table-footer-group; } /* repeats at the bottom of every printed page */
+.mast { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8mm; padding-bottom: 3mm; border-bottom: 1.5px solid var(--ink); }
+.brand { display: flex; align-items: center; gap: 2.5mm; font-size: 17px; }
+.brand .mark { width: 9mm; height: 9mm; }
+.mt { margin: 0; color: var(--muted); font-size: 12px; text-align: right; }
+
+/* Dictionary page: a letter heading, then entries, flowing in two columns. */
+.group { margin-bottom: 9mm; }
+.group h2 { margin: 0 0 5mm; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.letters { column-count: 2; column-gap: 12mm; }
+.letter h3 { display: flex; align-items: baseline; margin: 0 0 3mm; padding-bottom: 1mm; border-bottom: .5px solid #d9cfe3; color: var(--peach-deep); font-size: 30px; font-weight: 700; letter-spacing: -.04em; line-height: 1.1; break-after: avoid; }
+.letter { margin-bottom: 7mm; }
+.entry { break-inside: avoid; margin: 0 0 4.2mm; }
+.entry p { margin: 0; }
+.entry b { font-size: 16px; font-weight: 700; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.entry .tr { margin-left: 2mm; color: var(--peach-deep); font-size: 14px; font-weight: 500; }
+.entry .ctx { margin-top: .6mm; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.entry .ctx mark { background: none; color: inherit; text-decoration: underline; text-decoration-color: var(--peach); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.empty { color: var(--muted); text-align: center; padding: 20mm 0; }
+
+/* Footer: the table's tfoot, so it repeats on every printed page and the rows above never run under it. */
+.foot { display: flex; align-items: center; justify-content: space-between; gap: 6mm; padding: 4mm 14mm 9mm; }
+.foot-text { display: grid; gap: 1mm; color: var(--muted); font-size: 11.5px; }
+.foot-text .wordmark { color: var(--ink); font-size: 16px; }
+.foot-qr { display: flex; align-items: center; gap: 3mm; color: var(--muted); font-size: 11.5px; font-weight: 600; text-align: right; }
+.foot-qr[hidden] { display: none; }
+#qrImg { width: 19mm; height: 19mm; border-radius: 3mm; background: #fff; box-shadow: 0 0 0 1px var(--line); }
+#qrImg svg { display: block; width: 100%; height: 100%; }
+
+@media print {
+  @page { size: A4; margin: 0; }
+  body.sheet { padding: 0; background: var(--paper); }
+  .doc .gap { height: 10mm; }
+  .toolbar { display: none; }
+  .doc { width: 100%; min-height: 296mm; border-radius: 0; box-shadow: none; overflow: visible; }
+}
+@media screen and (max-width: 760px) { .letters { column-count: 1; } .toolbar { flex-wrap: wrap; } }

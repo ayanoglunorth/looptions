@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #2D2134; }
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(62% 78% at 96% 4%, #F9B37F 0%, rgba(249, 179, 127, 0) 64%),
+      radial-gradient(60% 80% at 4% 96%, #C3B5F0 0%, rgba(195, 181, 240, 0) 68%),
+      linear-gradient(155deg, #FCF8FD 0%, #F4ECF9 100%);
+  }
+  .left {
+    position: absolute; left: 72px; top: 62px; width: 650px;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  h1 { margin: 0; font-size: 56px; font-weight: 700; letter-spacing: -.03em; line-height: 1.05; color: #2D2134; }
+  h1 .hl { color: #C4501A; }
+  .sub { margin: -8px 0 4px; font-size: 21px; line-height: 1.4; color: #675A74; font-weight: 450; }
+
+  .features { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .feat {
+    display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 22px;
+    background: rgba(255, 255, 255, .86); border: 1px solid #E9DFF2;
+    box-shadow: 0 14px 30px -18px rgba(70, 35, 90, .32);
+  }
+  .feat .fic {
+    width: 46px; height: 46px; border-radius: 14px; flex: none; display: grid; place-items: center;
+    background: #FDE9DC; color: #C4501A;
+  }
+  .feat .fic.lilac { background: #EFE9FB; color: #5B4A8F; }
+  .feat b { display: block; font-size: 18px; font-weight: 650; color: #2D2134; line-height: 1.2; }
+  .feat span { display: block; font-size: 14.5px; color: #6F617D; margin-top: 2px; }
+
+  .shell {
+    position: absolute; right: 80px; top: 44px; width: 380px; height: 712px;
+    border-radius: 30px; overflow: hidden; background: #FCF9FB;
+    box-shadow: 0 40px 84px -22px rgba(70, 35, 90, .5), 0 0 0 1px rgba(45, 33, 52, .08);
+  }
+  iframe { width: 380px; height: 712px; border: 0; display: block; }
+</style>
+</head>
+<body>
+  <div class="bg grain"></div>
+  <div class="left">
+    <h1>Your subtitles,<br><span class="hl">your style.</span></h1>
+    <p class="sub">Fine-tune every detail right from the toolbar or inside the video player — no account required.</p>
+
+    <div class="features">
+      <div class="feat">
+        <div class="fic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+        </div>
+        <div>
+          <b>5 subtitle styles &amp; 6 bundled fonts</b>
+          <span>Standard, Cinema, Outline, Line boxes, Minimal — size, height &amp; opacity.</span>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="fic lilac">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <div>
+          <b>Synced lines &amp; 0.25s timing shift</b>
+          <span>Both lines change together so your eyes never jump between tracks.</span>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="fic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </div>
+        <div>
+          <b>6 languages, any pair</b>
+          <span>English, Spanish, Turkish, German, French &amp; Russian — per-site controls.</span>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="fic lilac">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <b>No account. No ads. Private by design.</b>
+          <span>Your preferences and saved words stay local in your browser.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell">
+    <iframe id="f" src="/popup/popup.html?set=en"></iframe>
+  </div>
+</body>
+</html>

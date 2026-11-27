@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Looptions – Kelime defterim</title>
+  <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="export.css">
+</head>
+<body class="sheet">
+  <div class="toolbar">
+    <button type="button" id="printBtn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10m0 0-4-4m4 4 4-4M5 19h14"/></svg>PDF olarak kaydet
+    </button>
+    <p>Açılan pencerede hedef olarak “PDF olarak kaydet”i seç.</p>
+  </div>
+
+  <table class="doc"><thead><tr><td class="gap"></td></tr></thead><tbody><tr><td>
+  <main>
+    <header class="mast">
+      <div class="brand" translate="no">
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 128 128"><defs><linearGradient id="lp-e-bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFBF8"/><stop offset="100%" stop-color="#F1E9FA"/></linearGradient><linearGradient id="lp-e-bk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#A694EA"/><stop offset="100%" stop-color="#7B65D4"/></linearGradient><linearGradient id="lp-e-fr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF9048"/><stop offset="100%" stop-color="#E3591E"/></linearGradient><mask id="lp-e-cut"><rect width="128" height="128" fill="#fff"/><rect x="16" y="38" width="74" height="74" rx="22" fill="#000"/></mask></defs><rect width="128" height="128" rx="30" fill="url(#lp-e-bg)"/><rect x="44" y="22" width="62" height="62" rx="17" fill="url(#lp-e-bk)" mask="url(#lp-e-cut)"/><rect x="22" y="44" width="62" height="62" rx="17" fill="url(#lp-e-fr)"/><rect x="33" y="64" width="21" height="9.5" rx="4.75" fill="#fff"/><rect x="57.5" y="64" width="15.5" height="9.5" rx="4.75" fill="#FFE29E"/><rect x="33" y="78" width="31" height="9.5" rx="4.75" fill="#fff" fill-opacity=".76"/></svg>
+        </span>
+        <span class="wordmark">Loop<span>tions</span></span>
+      </div>
+      <p class="mt" id="meta"></p>
+    </header>
+    <div id="groups" translate="no"></div>
+  </main>
+  </td></tr></tbody>
+  <tfoot><tr><td>
+  <footer class="foot">
+    <div class="foot-text">
+      <span class="wordmark" translate="no">Loop<span>tions</span></span>
+      <span id="tagline">İki dilli altyazıyla izle, kelimeleri biriktir.</span>
+    </div>
+    <div class="foot-qr" id="qr" hidden>
+      <span id="qrCaption">Chrome Web Store’da</span>
+      <div id="qrImg"></div>
+    </div>
+  </footer>
+  </td></tr></tfoot></table>
+
+  <script src="../src/core/lang.js"></script>
+  <script src="../src/core/i18n.js"></script>
+  <script src="../src/core/qr.js"></script>
+  <script src="export.js"></script>
+</body>
+</html>

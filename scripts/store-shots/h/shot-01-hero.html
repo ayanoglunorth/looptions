@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #fff; }
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(56% 70% at 95% 4%, rgba(242, 122, 54, .34) 0%, rgba(242, 122, 54, 0) 64%),
+      radial-gradient(55% 75% at 4% 98%, rgba(165, 148, 227, .30) 0%, rgba(165, 148, 227, 0) 68%),
+      linear-gradient(155deg, #2D1D41 0%, #1B1128 58%, #130B1D 100%);
+  }
+  .head {
+    position: absolute; left: 72px; right: 72px; top: 44px;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  }
+  h1 { margin: 0; font-size: 52px; font-weight: 700; letter-spacing: -.03em; line-height: 1.06; color: #FFFDFB; }
+  h1 .hl { color: #FF9A54; }
+  .sub { margin: 8px 0 0; font-size: 20px; font-weight: 450; color: rgba(242, 234, 250, .78); }
+  .brand-pill {
+    display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 10px; border-radius: 999px;
+    background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .14); margin-bottom: 6px;
+  }
+  .brand-pill .ic { width: 28px; height: 28px; border-radius: 7px; overflow: hidden; }
+  .brand-pill span { font: 700 18px/1 "Looptions DM Sans", sans-serif; letter-spacing: -.03em; }
+  .brand-pill span b { font-weight: 400; color: rgba(255, 255, 255, .78); }
+
+  .s-stage {
+    position: absolute; left: 96px; top: 172px; width: 1088px; height: 590px;
+    border-radius: 26px; overflow: hidden;
+    box-shadow: 0 42px 84px -22px rgba(0, 0, 0, .75), 0 0 0 1.5px rgba(255, 255, 255, .14);
+    background: #120b1b;
+  }
+  .scene { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  .scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(12, 7, 20, .82) 0%, rgba(12, 7, 20, .18) 32%, rgba(12, 7, 20, 0) 56%); pointer-events: none; }
+  video { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
+
+  .s-bar {
+    position: absolute; left: 26px; right: 26px; bottom: 16px; height: 24px;
+    display: flex; align-items: center; gap: 14px; pointer-events: none; z-index: 2;
+  }
+  .s-bar .s-play { width: 14px; height: 14px; flex: none; color: rgba(255, 255, 255, .92); }
+  .s-bar .s-track { flex: 1; height: 4px; border-radius: 99px; background: rgba(255, 255, 255, .24); overflow: hidden; }
+  .s-bar .s-track i { display: block; width: 38%; height: 100%; background: linear-gradient(90deg, #A594E3, #FF9A54); border-radius: 99px; }
+  .s-bar .s-time { font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, .84); font-variant-numeric: tabular-nums; flex: none; }
+</style>
+</head>
+<body>
+  <div class="bg grain"></div>
+  <div class="head">
+    <div>
+      <h1>Two languages at once. <span class="hl">Click any word.</span></h1>
+      <p class="sub">Synced dual subtitles over your video with instant translation and one-click save.</p>
+    </div>
+    <div class="brand-pill">
+      <div class="ic">
+        <svg viewBox="0 0 128 128"><defs><linearGradient id="s1-bg" x1="12%" y1="6%" x2="88%" y2="96%"><stop offset="0%" stop-color="#3E2854"/><stop offset="100%" stop-color="#1E132B"/></linearGradient><linearGradient id="s1-bk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF9B54"/><stop offset="100%" stop-color="#E85E24"/></linearGradient><mask id="s1-cut"><rect width="128" height="128" fill="#fff"/><rect x="16" y="38" width="74" height="74" rx="22" fill="#000"/></mask></defs><rect width="128" height="128" rx="30" fill="url(#s1-bg)"/><rect x="44" y="22" width="62" height="62" rx="17" fill="url(#s1-bk)" mask="url(#s1-cut)"/><rect x="22" y="44" width="62" height="62" rx="17" fill="#FFFDFB"/><rect x="33" y="64" width="21" height="9.5" rx="4.75" fill="#2D2134"/><rect x="57.5" y="64" width="15.5" height="9.5" rx="4.75" fill="#F27A36"/><rect x="33" y="78" width="31" height="9.5" rx="4.75" fill="#9D8CE0"/></svg>
+      </div>
+      <span>Loop<b>tions</b></span>
+    </div>
+  </div>
+
+  <div class="s-stage">
+    <img class="scene" src="/h/scene-dpw.jpg" alt="">
+    <div class="scrim"></div>
+    <video id="v" muted></video>
+    <div class="s-bar">
+      <svg class="s-play" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg>
+      <div class="s-track"><i></i></div>
+      <span class="s-time">14:22 / 48:10</span>
+    </div>
+  </div>
+
+  <script src="/__mock.js"></script>
+  <script src="/src/core/parse.js"></script><script src="/src/core/lang.js"></script><script src="/src/core/i18n.js"></script>
+  <script src="/src/core/words-en.js"></script><script src="/src/core/freq-en.js"></script><script src="/src/core/vocab.js"></script><script src="/src/core/ability.js"></script>
+  <script src="/src/core/menu.js"></script><script src="/src/core/overlay.js"></script>
+  <script>
+    const v = document.getElementById('v');
+    Object.defineProperty(v, 'currentTime', { get: () => 5, set() {} });
+    Object.defineProperty(v, 'paused', { get: () => true });
+    v.play = () => Promise.resolve(); v.pause = () => {};
+    const cue = text => [{ start: 0, end: 10, text }];
+    const L1 = 'No dije nunca que estuviera reacio a ayudar.';
+    const L2 = 'I never said I was reluctant to help.';
+    const prefs = DS.mergePrefs({ primary: 'es', secondary: 'en', size: 125, lift: 9, logo: 'tr', style: 'standard', font: 'roboto' });
+    window.ov = DS.createOverlay();
+    ov.set({
+      video: v,
+      lines: [
+        { getCues: () => cue(L2), offset: 0, role: 'secondary', lang: 'en' },
+        { getCues: () => cue(L1), offset: 0, role: 'primary', lang: 'es' }
+      ],
+      size: prefs.size, mode: 'dual', align: true, font: prefs.font, look: DS.lookVars(prefs), logo: 'tr',
+      prefs, sel: {}, onPrefs() {}, onSel() {},
+      onWord: () => Promise.resolve('reluctant, unwilling'),
+      onSave: () => Promise.resolve()
+    });
+  </script>
+</body>
+</html>

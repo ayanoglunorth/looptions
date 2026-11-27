@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 440px; height: 280px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+  .p-canvas {
+    position: relative; width: 440px; height: 280px; overflow: hidden; background: #160a14;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 20px 22px 18px; box-sizing: border-box;
+  }
+  .p-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; filter: saturate(1.08) brightness(.72); }
+  .p-fade {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(24, 13, 36, .92) 0%, rgba(24, 13, 36, .58) 44%, rgba(16, 4, 8, .92) 70%, #0d0204 86%);
+  }
+  .p-top { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .p-brand { display: flex; align-items: center; gap: 10px; }
+  .p-icon { width: 42px; height: 42px; border-radius: 11px; overflow: hidden; box-shadow: 0 10px 22px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .18); }
+  .p-icon svg { display: block; width: 100%; height: 100%; }
+  .p-wm { font: 700 26px/1 "Looptions DM Sans", sans-serif; letter-spacing: -.03em; color: #fff; }
+  .p-wm span { font-weight: 400; color: rgba(255, 255, 255, .84); }
+  h1 { margin: 0; text-align: center; font-size: 40px; font-weight: 700; line-height: 1.03; letter-spacing: -.035em; color: #FFFDFB; text-shadow: 0 4px 18px rgba(0, 0, 0, .55); }
+  h1 .hl { color: #FF9A54; }
+  .p-cap {
+    position: relative; z-index: 2;
+    display: inline-flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 8px 18px 9px; border-radius: 10px; background: rgba(10, 10, 12, .84);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, .65);
+  }
+  .p-cap .l1 { font: 600 18px/1.25 "Roboto", "Segoe UI", sans-serif; color: #fff; }
+  .p-cap .l2 { font: 500 15px/1.25 "Roboto", "Segoe UI", sans-serif; color: #F5D547; }
+</style>
+</head>
+<body>
+  <div class="p-canvas">
+    <img class="p-photo" src="/h/scene-tokyo-top.jpg" alt="">
+    <div class="p-fade"></div>
+    <div class="p-top">
+      <div class="p-brand">
+        <div class="p-icon">
+          <svg viewBox="0 0 128 128"><defs><linearGradient id="pb-bg" x1="12%" y1="6%" x2="88%" y2="96%"><stop offset="0%" stop-color="#3E2854"/><stop offset="100%" stop-color="#1E132B"/></linearGradient><radialGradient id="pb-gl" cx="82%" cy="18%" r="58%"><stop offset="0%" stop-color="#F27A36" stop-opacity=".28"/><stop offset="100%" stop-color="#F27A36" stop-opacity="0"/></radialGradient><linearGradient id="pb-bk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF9B54"/><stop offset="100%" stop-color="#E85E24"/></linearGradient><mask id="pb-cut"><rect width="128" height="128" fill="#fff"/><rect x="16" y="38" width="74" height="74" rx="22" fill="#000"/></mask></defs><rect width="128" height="128" rx="30" fill="url(#pb-bg)"/><rect width="128" height="128" rx="30" fill="url(#pb-gl)"/><rect x="44" y="22" width="62" height="62" rx="17" fill="url(#pb-bk)" mask="url(#pb-cut)"/><rect x="22" y="44" width="62" height="62" rx="17" fill="#FFFDFB"/><rect x="33" y="64" width="21" height="9.5" rx="4.75" fill="#2D2134"/><rect x="57.5" y="64" width="15.5" height="9.5" rx="4.75" fill="#F27A36"/><rect x="33" y="78" width="31" height="9.5" rx="4.75" fill="#9D8CE0"/></svg>
+        </div>
+        <div class="p-wm">Loop<span>tions</span></div>
+      </div>
+      <h1>Dual <span class="hl">Subtitles.</span></h1>
+    </div>
+    <div class="p-cap">
+      <span class="l1">Me llamo Tokio.</span>
+      <span class="l2">My name's Tokyo.</span>
+    </div>
+  </div>
+</body>
+</html>

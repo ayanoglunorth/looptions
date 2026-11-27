@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #2D2134; }
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(62% 78% at 96% 4%, #F9B37F 0%, rgba(249, 179, 127, 0) 64%),
+      radial-gradient(60% 80% at 4% 96%, #C3B5F0 0%, rgba(195, 181, 240, 0) 68%),
+      linear-gradient(155deg, #FCF8FD 0%, #F4ECF9 100%);
+  }
+  .head {
+    position: absolute; left: 72px; right: 72px; top: 40px;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  }
+  h1 { margin: 0; font-size: 46px; font-weight: 700; letter-spacing: -.03em; line-height: 1.06; color: #2D2134; white-space: nowrap; }
+  h1 .hl { color: #C4501A; }
+  .sub { margin: 8px 0 0; font-size: 19px; font-weight: 450; color: #675A74; }
+  .s-pills { display: flex; gap: 8px; margin-bottom: 6px; flex: none; }
+  .s-pill {
+    display: inline-flex; align-items: center; height: 36px; padding: 0 15px; border-radius: 999px; white-space: nowrap;
+    background: #fff; border: 1px solid #E7DCF0;
+    box-shadow: 0 8px 20px -12px rgba(70, 35, 90, .3); font-size: 14px; font-weight: 650; color: #5B4A8F;
+  }
+  .s-pill.org { color: #C4501A; background: #FFF5EE; border-color: #F8D4BC; }
+
+  .shell {
+    position: absolute; left: 72px; top: 164px; width: 790px; height: 598px;
+    border-radius: 26px; overflow: hidden; background: #FCF9FB;
+    box-shadow: 0 36px 72px -24px rgba(70, 35, 90, .42), 0 0 0 1px rgba(45, 33, 52, .08);
+  }
+  iframe { width: 1054px; height: 798px; border: 0; transform: scale(.75); transform-origin: 0 0; display: block; }
+
+  /* Right floating practice card (spaced repetition) */
+  .practice-card {
+    position: absolute; right: 56px; top: 200px; width: 356px;
+    padding: 24px; border-radius: 26px; background: #2A1B3D; color: #fff;
+    box-shadow: 0 38px 74px -18px rgba(45, 24, 70, .62), 0 0 0 1px rgba(255, 255, 255, .14);
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .pkick { display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #FF9A54; }
+  .pkick span { color: rgba(255, 255, 255, .6); letter-spacing: .04em; }
+  .qbox {
+    padding: 20px 18px; border-radius: 18px; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .12);
+    text-align: center;
+  }
+  .qbox small { display: block; font-size: 13px; color: rgba(240, 232, 250, .7); margin-bottom: 6px; }
+  .qbox b { font-size: 30px; font-weight: 700; color: #FFFDFB; letter-spacing: -.02em; }
+  .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .opt {
+    padding: 11px 12px; border-radius: 14px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .12);
+    font-size: 14.5px; font-weight: 600; color: #F5EFFB; text-align: center;
+  }
+  .opt.correct { background: rgba(242, 122, 54, .28); border-color: #FF9A54; color: #FFD9BE; }
+  .srs {
+    padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, .12);
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
+  }
+  .srs-step {
+    flex: 1; text-align: center; padding: 7px 4px; border-radius: 10px;
+    background: rgba(165, 148, 227, .16); color: #D7CCFA; font-size: 12.5px; font-weight: 700;
+  }
+  .srs-step.on { background: #F27A36; color: #fff; }
+</style>
+</head>
+<body>
+  <div class="bg grain"></div>
+  <div class="head">
+    <div>
+      <h1>Save words. <span class="hl">Practice on schedule.</span></h1>
+      <p class="sub">Spaced repetition brings words back at 1, 3, 7 &amp; 21 days — export anytime.</p>
+    </div>
+    <div class="s-pills">
+      <span class="s-pill">CSV</span>
+      <span class="s-pill">Anki</span>
+      <span class="s-pill org">Printable PDF</span>
+    </div>
+  </div>
+
+  <div class="shell">
+    <iframe id="f" src="/pages/options.html?set=en"></iframe>
+  </div>
+
+  <div class="practice-card">
+    <div class="pkick">Spaced Repetition <span>2 / 4</span></div>
+    <div class="qbox">
+      <small>Pick the Spanish word for</small>
+      <b>reluctant</b>
+    </div>
+    <div class="opts">
+      <div class="opt correct">reacio</div>
+      <div class="opt">tenaz</div>
+      <div class="opt">huir</div>
+      <div class="opt">deuda</div>
+    </div>
+    <div class="srs">
+      <span class="srs-step on">1d</span>
+      <span class="srs-step on">3d</span>
+      <span class="srs-step">7d</span>
+      <span class="srs-step">21d</span>
+    </div>
+  </div>
+</body>
+</html>

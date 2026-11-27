@@ -1,0 +1,31 @@
+.impeccable/
+node_modules/
+*.zip
+*.crx
+*.pem
+.DS_Store
+Thumbs.db
+dist/
+worker/.wrangler/
+worker/.dev.vars
+promo/
+
+# Private working files: never publish
+CLAUDE.md
+.claude/
+.agents/
+docs/memory/
+docs/superpowers/
+docs/marketing/
+.env
+.env.*
+*.key
+*.log
+scripts/store-shots/h/scene-*.jpg
+
+# local assistant files
+AGENTS.md
+GEMINI.md
+.cursor/
+.codex/
+.taste-skill/

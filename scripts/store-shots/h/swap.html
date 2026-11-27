@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="/pages/pages.css">
+<style>
+ html,body{margin:0;height:100%} body{width:1280px;height:800px;overflow:hidden;font-family:"Outfit","Segoe UI",system-ui,sans-serif;color:#2d2134}
+ .bg{position:absolute;inset:0;background:radial-gradient(70% 90% at 100% 0%,#f7a466,rgba(247,164,102,0) 65%),radial-gradient(60% 80% at 0% 100%,#a594e3,rgba(165,148,227,0) 70%),#fcf9fb}
+ h1{position:absolute;left:72px;top:54px;margin:0;font-size:60px;font-weight:650;letter-spacing:-.03em;line-height:1.05;max-width:1100px}
+ .shell{position:absolute;top:250px;width:560px;height:315px;overflow:hidden;border-radius:24px;box-shadow:0 40px 80px -30px rgba(70,35,90,.6),0 0 0 1px rgba(45,33,52,.06)}
+ .shell iframe{border:0;width:1280px;height:720px;transform:scale(.4375);transform-origin:0 0;display:block}
+ .chip{position:absolute;top:592px;padding:8px 18px;border-radius:999px;background:#fcf9fb;font-weight:650;font-size:20px;letter-spacing:.06em;box-shadow:0 10px 24px -14px rgba(90,50,110,.45),0 0 0 1px #ece3ef}
+ .key{position:absolute;left:50%;top:372px;transform:translate(-50%,-50%);display:flex;gap:10px;align-items:center;z-index:2}
+ .key span{display:grid;place-items:center;min-width:64px;height:60px;padding:0 16px;border-radius:16px;background:#fcf9fb;font-weight:650;font-size:26px;box-shadow:0 5px 0 #d9cfe3,0 20px 30px -14px rgba(70,35,90,.6),0 0 0 1px #ece3ef}
+</style></head><body>
+<div class="bg grain field-peach"></div><h1 id="t"></h1>
+<div class="shell" style="left:72px"><iframe id="a"></iframe></div>
+<div class="shell" style="right:72px"><iframe id="b"></iframe></div>
+<div class="key"><span>Ctrl</span><span>M</span></div>
+<div class="chip" id="la" style="left:72px"></div><div class="chip" id="lb" style="right:72px"></div>
+<script>
+ const q=new URLSearchParams(location.search), set=q.get('set')||'tr', EN=set==='en';
+ document.getElementById('t').textContent=q.get('title');
+ const u=show=>`/h/overlay.html?set=${set}&bare=1&mode=swap&show=${show}`;
+ document.getElementById('a').src=u('primary'); document.getElementById('b').src=u('secondary');
+ document.getElementById('la').textContent=EN?'ES':'EN'; document.getElementById('lb').textContent=EN?'EN':'TR';
+</script></body></html>

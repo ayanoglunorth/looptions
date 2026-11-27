@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #fff; }
+  .s-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(56% 70% at 95% 4%, rgba(242, 122, 54, .32) 0%, rgba(242, 122, 54, 0) 64%),
+      radial-gradient(55% 75% at 4% 98%, rgba(165, 148, 227, .28) 0%, rgba(165, 148, 227, 0) 68%),
+      linear-gradient(155deg, #2D1D41 0%, #1B1128 58%, #130B1D 100%);
+  }
+  .s-head { position: absolute; left: 96px; right: 96px; top: 44px; }
+  h1 { margin: 0; font-size: 52px; font-weight: 700; letter-spacing: -.03em; line-height: 1.06; color: #FFFDFB; }
+  h1 .hl { color: #FF9A54; }
+  .s-sub { margin: 8px 0 0; font-size: 20px; font-weight: 450; color: rgba(242, 234, 250, .78); }
+
+  .s-shell {
+    position: absolute; left: 96px; top: 172px; width: 1088px; height: 588px;
+    border-radius: 26px; overflow: hidden; background: #FCF9FB;
+    box-shadow: 0 46px 92px -22px rgba(6, 2, 12, .88), 0 18px 36px -14px rgba(6, 2, 12, .68);
+  }
+  iframe { width: 1265px; height: 684px; border: 0; transform: scale(.86); transform-origin: 0 0; display: block; }
+</style>
+</head>
+<body>
+  <div class="s-bg grain"></div>
+  <div class="s-head">
+    <h1>Words come back <span class="hl">when it’s time.</span></h1>
+    <p class="s-sub">Built-in spaced repetition brings saved words back after 1, 3, 7, and 21 days.</p>
+  </div>
+  <div class="s-shell">
+    <iframe id="f" src="/pages/options.html?set=en"></iframe>
+  </div>
+</body>
+</html>

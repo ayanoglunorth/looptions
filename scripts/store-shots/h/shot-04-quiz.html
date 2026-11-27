@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #fff; }
+  .s-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(56% 70% at 95% 4%, rgba(242, 122, 54, .32) 0%, rgba(242, 122, 54, 0) 64%),
+      radial-gradient(55% 75% at 4% 98%, rgba(165, 148, 227, .28) 0%, rgba(165, 148, 227, 0) 68%),
+      linear-gradient(155deg, #2D1D41 0%, #1B1128 58%, #130B1D 100%);
+  }
+  .s-head { position: absolute; left: 96px; right: 96px; top: 44px; }
+  h1 { margin: 0; font-size: 52px; font-weight: 700; letter-spacing: -.03em; line-height: 1.06; color: #FFFDFB; }
+  h1 .hl { color: #FF9A54; }
+  .s-sub { margin: 8px 0 0; font-size: 20px; font-weight: 450; color: rgba(242, 234, 250, .78); }
+
+  .s-stage {
+    position: absolute; left: 96px; top: 172px; width: 1088px; height: 588px;
+    border-radius: 26px; overflow: hidden; background: #1d1428;
+    box-shadow: 0 46px 92px -22px rgba(6, 2, 12, .88), 0 18px 36px -14px rgba(6, 2, 12, .68);
+    display: grid; place-items: center;
+  }
+  .s-scene {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center center;
+  }
+  .qcard {
+    position: relative; z-index: 2; width: 604px; min-height: 368px; padding: 42px 42px 44px; border-radius: 36px;
+    background: #FCF9FB; color: #2D2134; box-sizing: border-box;
+    box-shadow: 0 32px 68px -18px rgba(18, 8, 30, .72);
+    display: grid; align-content: center; gap: 22px;
+  }
+  .qtop { display: flex; align-items: center; justify-content: space-between; }
+  .qkick { font-size: 15px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #C4501A; font-variant-numeric: tabular-nums; }
+  .qtopr { display: flex; gap: 18px; font-size: 17px; font-weight: 600; color: #776A82; }
+  .qbar { height: 8px; border-radius: 99px; background: #EFE9FB; overflow: hidden; }
+  .qbar i { display: block; width: 65%; height: 100%; border-radius: inherit; background: #F27A36; }
+  .qask { margin: 4px 0 0; text-align: center; font-size: 19px; font-weight: 500; color: #776A82; }
+  .qword { margin: 0; padding: 4px 0 8px; text-align: center; font-size: 52px; font-weight: 700; line-height: 1.08; letter-spacing: -.025em; color: #2D2134; }
+  .qrow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .qbtn {
+    height: 58px; border-radius: 999px; display: flex; align-items: center; justify-content: center; gap: 9px;
+    font-size: 19px; font-weight: 650;
+  }
+  .qbtn.no { background: #EFE9FB; color: #5B4A8F; }
+  .qbtn.yes {
+    color: #fff;
+    background: radial-gradient(60% 80% at 100% 0%, #f7a466 0%, rgba(247, 164, 102, 0) 60%), linear-gradient(150deg, #c4501a, #a9420f);
+    box-shadow: 0 12px 26px -10px rgba(196, 80, 26, .7);
+  }
+</style>
+</head>
+<body>
+  <div class="s-bg grain"></div>
+  <div class="s-head">
+    <h1>Learn hard words <span class="hl">before you watch.</span></h1>
+    <p class="s-sub">A quick pre-video warm-up introduces tougher words from the video before play starts.</p>
+  </div>
+
+  <div class="s-stage">
+    <img class="s-scene" src="/h/scene-quiz-real.jpg" alt="">
+    <div class="qcard">
+      <div class="qtop">
+        <span class="qkick">BEFORE THE VIDEO · 13 / 20</span>
+        <div class="qtopr"><span>Back</span><span>Skip</span></div>
+      </div>
+      <div class="qbar"><i></i></div>
+      <p class="qask">Do you know this word?</p>
+      <h2 class="qword">foundation</h2>
+      <div class="qrow">
+        <div class="qbtn no">I don't know</div>
+        <div class="qbtn yes">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+          I know
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

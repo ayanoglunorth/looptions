@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/pages/pages.css">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Outfit", "Segoe UI", system-ui, sans-serif; color: #fff; }
+  .s-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(56% 70% at 95% 4%, rgba(242, 122, 54, .32) 0%, rgba(242, 122, 54, 0) 64%),
+      radial-gradient(55% 75% at 4% 98%, rgba(165, 148, 227, .28) 0%, rgba(165, 148, 227, 0) 68%),
+      linear-gradient(155deg, #2D1D41 0%, #1B1128 58%, #130B1D 100%);
+  }
+  .s-left {
+    position: absolute; left: 88px; top: 82px; width: 640px;
+    display: flex; flex-direction: column; gap: 26px;
+  }
+  h1 { margin: 0; font-size: 58px; font-weight: 700; letter-spacing: -.03em; line-height: 1.04; color: #FFFDFB; }
+  h1 .hl { color: #FF9A54; }
+  .s-sub { margin: -8px 0 4px; font-size: 21px; line-height: 1.4; font-weight: 450; color: rgba(242, 234, 250, .78); }
+
+  .s-list { display: grid; gap: 14px; }
+  .s-item {
+    display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 20px;
+    background: rgba(255, 255, 255, .055);
+    box-shadow: 0 14px 28px -18px rgba(4, 1, 10, .75);
+  }
+  .s-ic {
+    width: 44px; height: 44px; border-radius: 13px; flex: none; display: grid; place-items: center;
+    background: rgba(242, 122, 54, .18); color: #FF9A54;
+  }
+  .s-ic.lilac { background: rgba(165, 148, 227, .18); color: #C2B4F5; }
+  .s-item b { display: block; font-size: 18px; font-weight: 650; color: #FFFDFB; line-height: 1.2; }
+  .s-item span { display: block; font-size: 14.5px; color: rgba(235, 226, 246, .72); margin-top: 2px; }
+
+  .s-shell {
+    position: absolute; right: 92px; top: 44px; width: 374px; height: 712px;
+    border-radius: 28px; overflow: hidden; background: #FCF9FB;
+    box-shadow: 0 46px 92px -22px rgba(6, 2, 12, .88), 0 18px 36px -14px rgba(6, 2, 12, .68);
+  }
+  iframe { width: 340px; height: 648px; border: 0; display: block; transform: scale(1.1); transform-origin: 0 0; }
+</style>
+</head>
+<body>
+  <div class="s-bg grain"></div>
+  <div class="s-left">
+    <h1>Your subtitles,<br><span class="hl">your way.</span></h1>
+    <p class="s-sub">Customize look, sync, and languages right from the toolbar or inside the player.</p>
+
+    <div class="s-list">
+      <div class="s-item">
+        <div class="s-ic">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+        </div>
+        <div>
+          <b>5 styles &amp; 6 bundled fonts</b>
+          <span>Adjust size, height, and background opacity to fit any video.</span>
+        </div>
+      </div>
+
+      <div class="s-item">
+        <div class="s-ic lilac">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <div>
+          <b>Synced lines &amp; 0.25s timing shift</b>
+          <span>Keep both languages aligned so your eyes never jump.</span>
+        </div>
+      </div>
+
+      <div class="s-item">
+        <div class="s-ic">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </div>
+        <div>
+          <b>6 languages, any pair</b>
+          <span>English, Spanish, Turkish, German, French, and Russian.</span>
+        </div>
+      </div>
+
+      <div class="s-item">
+        <div class="s-ic lilac">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <b>No account. No ads. Stays local.</b>
+          <span>Your settings and word notebook stay right in your browser.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-shell">
+    <iframe id="f" src="/popup/popup.html?set=en"></iframe>
+  </div>
+</body>
+</html>
